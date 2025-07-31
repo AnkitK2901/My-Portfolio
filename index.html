@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Set dark mode as the default -->
 <html lang="en" class="dark !scroll-smooth">
 
 <head>
@@ -7,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ankit Kumar | Web Developer Portfolio</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Configuration for Tailwind CSS dark mode
@@ -16,18 +14,15 @@
         }
     </script>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Your Custom CSS File -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-slate-50 dark:bg-gray-900 m-0 p-0">
 
-    <!-- =========== LOCK SCREEN =========== -->
     <div id="lockScreen" class="lockscreen-bg fixed inset-0 z-50 flex flex-col items-center justify-center text-white">
         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
 
@@ -39,7 +34,7 @@
             <h1 id="profileName" class="text-3xl md:text-4xl font-medium mt-4 lock-element">Ankit Kumar</h1>
 
             <p class="text-lg md:text-xl text-gray-200 mt-2 max-w-sm lock-element opacity-80">
-                Where ideas take shape and code comes to life.
+                Creating a beautiful garden!
             </p>
 
         </div>
@@ -68,9 +63,7 @@
         </div>
     </div>
 
-    <!-- =========== MAIN PORTFOLIO CONTENT =========== -->
     <div id="mainContent" class="hidden">
-        <!-- Header/Navigation -->
         <header
             class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm dark:shadow-gray-800">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -83,6 +76,8 @@
                     <a href="#tech"
                         class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition">Tech
                         Stack</a>
+                    <a href="#testimonials"
+                        class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition">Testimonials</a>
                     <a href="#contact"
                         class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition">Contact</a>
 
@@ -126,15 +121,37 @@
             <section id="projects" class="min-h-screen py-20 scroll-reveal">
                 <h2 class="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">My Projects</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Add your projects here -->
                     <div
                         class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Project+One" alt="Project 1"
+                        <img src="https://placehold.co/600x400/a78bfa/ffffff?text=E-commerce+Platform" alt="Project 1"
+                            class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">E-commerce Platform</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">A full-featured e-commerce site with a custom backend, payment integration, and a responsive user interface.</p>
+                            <a href="https://github.com/AnkitK2901" target="_blank"
+                                class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
+                                &rarr;</a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/818cf8/ffffff?text=Task+Management+App" alt="Project 2"
+                            class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Task Management App</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">A collaborative task management tool built with React and a real-time database, featuring boards and lists.</p>
+                            <a href="https://github.com/AnkitK2901" target="_blank"
+                                class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
+                                &rarr;</a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/f472b6/ffffff?text=Portfolio+Website" alt="Project 3"
                             class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Portfolio Website</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">The very site you're on! Built with HTML,
-                                CSS, and JS to be fast and responsive.</p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">The very site you're on! Built with HTML, CSS, and JS to be fast and responsive.</p>
                             <a href="https://github.com/AnkitK2901" target="_blank"
                                 class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
                                 &rarr;</a>
@@ -147,7 +164,6 @@
                 <div class="w-full text-center">
                     <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">Tech Stack</h2>
 
-                    <!-- Proficient Technologies -->
                     <div class="mb-16">
                         <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Technologies I'm
                             Proficient In</h3>
@@ -155,6 +171,7 @@
                             <div class="tech-card"><span>📄</span> HTML</div>
                             <div class="tech-card"><span>🎨</span> CSS</div>
                             <div class="tech-card"><span>⚡️</span> JavaScript</div>
+                            <div class="tech-card"><span>⚛️</span> React.js</div>
                             <div class="tech-card"><span>📱</span> Kotlin</div>
                             <div class="tech-card"><span>🐦</span> Flutter</div>
                             <div class="tech-card"><span>🗃️</span> SQL</div>
@@ -164,16 +181,37 @@
                         </div>
                     </div>
 
-                    <!-- Learning Phase -->
                     <div>
                         <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Currently Learning</h3>
                         <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
-                            <div class="tech-card"><span>⚛️</span> React.js</div>
-                            <!-- Add other learning technologies here -->
+                            <div class="tech-card"><span>⚙️</span> Node.js</div>
+                            <div class="tech-card"><span>📦</span> Express.js</div>
                         </div>
                     </div>
                 </div>
             </section>
+            
+            <section id="testimonials" class="min-h-screen py-20 scroll-reveal">
+                <h2 class="text-4xl font-bold mb-12 text-center text-gray-800 dark:text-white">Testimonials</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Ankit is a highly motivated and skilled developer. He was a key contributor to our project and delivered exceptional results."</p>
+                        <div class="font-bold text-gray-900 dark:text-white">Jane Doe</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Project Manager, Tech Solutions Inc.</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Working with Ankit was a pleasure. His passion for technology and problem-solving is truly inspiring."</p>
+                        <div class="font-bold text-gray-900 dark:text-white">John Smith</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Senior Developer, Innovate Corp.</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Ankit's leadership in the CSE Society has been invaluable. He is a natural leader and a great team player."</p>
+                        <div class="font-bold text-gray-900 dark:text-white">Emily White</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Professor, C.V. Raman Global University</div>
+                    </div>
+                </div>
+            </section>
+
         </main>
 
         <footer id="contact" class="bg-gray-800 dark:bg-gray-950 text-white py-20 scroll-reveal">
@@ -181,10 +219,18 @@
                 <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
                 <p class="mb-8 text-gray-300 max-w-lg mx-auto">I'm currently open to new opportunities and
                     collaborations. My inbox is always open. Feel free to reach out!</p>
-                <a href="mailto:ankit.anjul@gmail.com"
-                    class="bg-violet-600 text-white font-bold px-8 py-3 rounded-full hover:bg-violet-700 transition-all duration-300 text-lg">
-                    Say Hello
-                </a>
+                
+                <form id="contactForm" class="max-w-xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-4 mb-4">
+                        <input type="text" id="name" name="name" placeholder="Your Name" class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500" required>
+                    </div>
+                    <textarea name="message" id="message" rows="4" placeholder="Your Message" class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500" required></textarea>
+                    <button type="submit" class="bg-violet-600 text-white font-bold px-8 py-3 mt-6 rounded-full hover:bg-violet-700 transition-all duration-300 text-lg">
+                        Send Message
+                    </button>
+                </form>
+
                 <div class="mt-10 flex justify-center space-x-6">
                     <a href="https://github.com/AnkitK2901" target="_blank"
                         class="text-gray-400 hover:text-white transition">
@@ -208,7 +254,6 @@
         </footer>
     </div>
 
-    <!-- Your Custom JavaScript File -->
     <script src="js/script.js"></script>
 </body>
 

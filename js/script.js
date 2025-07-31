@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    const contactForm = document.getElementById('contactForm');
 
     // --- Clock Function ---
     function updateClock() {
         const now = new Date();
         
-        // Use en-US locale for reliable AM/PM format
         const fullTimeString = now.toLocaleTimeString('en-US', {
             hour: '2-digit',
             minute: '2-digit',
@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hour12: true
         });
 
-        // Example: "04:02:05 PM" -> ["04:02", "05", "PM"]
         const timeParts = fullTimeString.split(/:| /);
         
         const mainTime = timeParts[0] + ":" + timeParts[1];
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         secondsDisplay.textContent = seconds;
         ampmDisplay.textContent = ampm;
 
-        // Date formatting remains the same
         const dateString = now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         dateDisplay.textContent = dateString;
     }
@@ -47,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggleLightIcon.classList.toggle('hidden', isDarkMode);
     }
 
-    // Check for saved theme in localStorage. Default to dark if nothing is set.
     if (localStorage.getItem('theme') === 'light') {
         document.documentElement.classList.remove('dark');
         updateThemeIcon(false);
@@ -64,11 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Enter Animation ---
     enterButton.addEventListener('click', () => {
-        // Add fade-out classes to all lock screen elements
         lockElements.forEach(el => el.classList.add('lock-element-fade-out'));
         lockScreen.classList.add('fade-out');
         
-        // Show the main content and trigger its reveal animation
         mainContent.classList.remove('hidden');
         mainContent.classList.add('content-reveal');
     });
@@ -78,19 +73,43 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: unobserve after revealing to save resources
-                // observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1 // Trigger when 10% of the element is visible
+        threshold: 0.1
     });
 
     scrollRevealElements.forEach(el => {
         observer.observe(el);
     });
+    
+    // --- Contact Form Validation ---
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (name === '' || email === '' || message === '') {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        alert('Thank you for your message! I will get back to you soon.');
+        contactForm.reset();
+    });
+
+    function validateEmail(email) {
+        const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return re.test(String(email).toLowerCase());
+    }
 
     // --- Initial Setup ---
     updateClock();
-    setInterval(updateClock, 1000); // Update clock every second
+    setInterval(updateClock, 1000);
 });
