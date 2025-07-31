@@ -78,11 +78,6 @@ body::-webkit-scrollbar {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.enter-button:hover .enter-text {
-    opacity: 1;
-    transform: translateX(0);
-}
-
 .arrow-icon {
     width: 2.5rem;
     /* 40px */
@@ -272,7 +267,17 @@ body::-webkit-scrollbar {
       This rule ensures the text NEVER appears on tap or hover,
       keeping it hidden so only the button's action occurs.
     */
-    .enter-button .enter-text {
-        display: none;
+    .enter-button:hover .enter-text {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+/* --- Desktop-Only Hover Effect --- */
+/* This rule only applies to screens wider than 767px (desktops/laptops) */
+@media (min-width: 768px) {
+    .enter-button:hover .enter-text {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
