@@ -281,3 +281,9 @@ body::-webkit-scrollbar {
         transform: translateY(0);
     }
 }
+@media (max-width: 767px) {
+  /* Completely hide the enter text on mobile */
+  .enter-text {
+    display: none !important;
+  }
+}
