@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!-- Set dark mode as the default -->
+<html lang="en" class="dark !scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankit Kumar | Web Developer Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Configuration for Tailwind CSS dark mode
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Your Custom CSS File -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-slate-50 dark:bg-gray-900 m-0 p-0">
+
+    <!-- =========== LOCK SCREEN =========== -->
+    <div id="lockScreen" class="lockscreen-bg fixed inset-0 z-50 flex flex-col items-center justify-center text-white">
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+        <div class="relative z-10 flex flex-col items-center justify-center w-full h-full px-4 text-center">
+
+            <img id="profilePic" src="assets/images/profile.jpg" alt="Ankit Kumar Profile Picture"
+                class="w-32 h-32 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full border-4 border-white shadow-lg lock-element">
+
+            <h1 id="profileName" class="text-3xl md:text-4xl font-medium mt-4 lock-element">Ankit Kumar</h1>
+
+            <p class="text-lg md:text-xl text-gray-200 mt-2 max-w-sm lock-element opacity-80">
+                Where ideas take shape and code comes to life.
+            </p>
+
+        </div>
+
+        <div class="absolute bottom-8 left-8 z-10 lock-element bg-black/20 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+            <div class="flex items-end justify-start leading-none">
+                <div id="timeDisplay" class="text-5xl md:text-6xl font-bold">05:07</div>
+                <div class="flex flex-col items-start ml-2 mb-1">
+                    <div id="secondsDisplay" class="text-lg md:text-xl font-bold">38</div>
+                    <div id="ampmDisplay" class="text-lg md:text-xl font-bold">PM</div>
+                </div>
+            </div>
+            <div id="dateDisplay" class="text-base md:text-lg mt-1 text-gray-300">Thursday, 31 July 2025</div>
+        </div>
+
+
+        <div class="absolute bottom-8 right-8 z-10 lock-element">
+            <button id="enterButton"
+                class="w-14 h-14 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-white/50">
+                <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- =========== MAIN PORTFOLIO CONTENT =========== -->
+    <div id="mainContent" class="hidden">
+        <!-- Header/Navigation -->
+        <header
+            class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm dark:shadow-gray-800">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-violet-600">AK.</a>
+                <div class="flex items-center space-x-4 md:space-x-8 text-sm md:text-base">
+                    <a href="#about"
+                        class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition">About</a>
+                    <a href="#projects"
+                        class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition">Projects</a>
+                    <a href="#tech"
+                        class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition">Tech
+                        Stack</a>
+                    <a href="#contact"
+                        class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition">Contact</a>
+
+                    <button id="theme-toggle" type="button"
+                        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 016.465 3.636l.707.707a1 1 0 01-1.414 1.414l-.707-.707a1 1 0 010-1.414zM5 11a1 1 0 100-2H3a1 1 0 100 2h2zM8 15a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm8.95-6.95a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container mx-auto px-6 py-12">
+            <section id="about" class="min-h-screen flex items-center scroll-reveal">
+                <div class="w-full">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-white">About Me</h2>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 max-w-3xl">
+                        Hello! I'm Ankit Kumar, a final-year Computer Science student at C.V. Raman Global University,
+                        driven by a strong passion for technology and innovation. My development journey started with
+                        Android, but over time, my interests have expanded into the world of full-stack web development.
+                        From crafting intuitive front-end interfaces to building robust back-end systems, I enjoy
+                        bringing ideas to life through code. Since my first year, I've been particularly fascinated by
+                        cloud technologies, with a strong inclination toward the Google Cloud Platform (GCP). This
+                        interest has led me to explore scalable solutions and cloud-native development. Beyond coding, I
+                        thrive in leadership and organizational roles. I currently serve as the Joint Secretary of the
+                        CSE Society, where I actively plan and coordinate technical events, workshops, and club
+                        initiatives across campus. I'm always exploring new technologies and embracing challenges in the
+                        ever-evolving world of web development — and I'm confident in my ability to grow and make
+                        meaningful contributions in this field.
+                    </p>
+                </div>
+            </section>
+
+            <section id="projects" class="min-h-screen py-20 scroll-reveal">
+                <h2 class="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Add your projects here -->
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Project+One" alt="Project 1"
+                            class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Portfolio Website</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">The very site you're on! Built with HTML,
+                                CSS, and JS to be fast and responsive.</p>
+                            <a href="https://github.com/AnkitK2901" target="_blank"
+                                class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
+                                &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tech" class="min-h-screen py-20 scroll-reveal">
+                <div class="w-full text-center">
+                    <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">Tech Stack</h2>
+
+                    <!-- Proficient Technologies -->
+                    <div class="mb-16">
+                        <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Technologies I'm
+                            Proficient In</h3>
+                        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+                            <div class="tech-card"><span>📄</span> HTML</div>
+                            <div class="tech-card"><span>🎨</span> CSS</div>
+                            <div class="tech-card"><span>⚡️</span> JavaScript</div>
+                            <div class="tech-card"><span>📱</span> Kotlin</div>
+                            <div class="tech-card"><span>🐦</span> Flutter</div>
+                            <div class="tech-card"><span>🗃️</span> SQL</div>
+                            <div class="tech-card"><span>☁️</span> GCP</div>
+                            <div class="tech-card"><span>🌿</span> Git</div>
+                            <div class="tech-card"><span></span> GitHub</div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Phase -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Currently Learning</h3>
+                        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+                            <div class="tech-card"><span>⚛️</span> React.js</div>
+                            <!-- Add other learning technologies here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contact" class="bg-gray-800 dark:bg-gray-950 text-white py-20 scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
+                <p class="mb-8 text-gray-300 max-w-lg mx-auto">I'm currently open to new opportunities and
+                    collaborations. My inbox is always open. Feel free to reach out!</p>
+                <a href="mailto:ankit.anjul@gmail.com"
+                    class="bg-violet-600 text-white font-bold px-8 py-3 rounded-full hover:bg-violet-700 transition-all duration-300 text-lg">
+                    Say Hello
+                </a>
+                <div class="mt-10 flex justify-center space-x-6">
+                    <a href="https://github.com/AnkitK2901" target="_blank"
+                        class="text-gray-400 hover:text-white transition">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ankit-kumar-cvrgu/" target="_blank"
+                        class="text-gray-400 hover:text-white transition">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Your Custom JavaScript File -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

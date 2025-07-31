@@ -1,0 +1,111 @@
+/* === Custom Styles & Animations === */
+html {
+    /* Hide scrollbar for Firefox */
+    scrollbar-width: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Webkit browsers */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.lockscreen-bg {
+    background-image: url('../assets/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- Enhanced Lock Screen Animations --- */
+.lockscreen-bg.fade-out {
+    animation: fadeOutBg 0.8s forwards ease-in-out;
+    animation-delay: 0.3s; /* Wait for text to fade first */
+}
+.lock-element-fade-out {
+    animation: fadeOutElement 0.4s forwards ease-in;
+}
+
+@keyframes fadeOutBg {
+    to {
+        opacity: 0;
+        transform: scale(1.05);
+        visibility: hidden;
+    }
+}
+@keyframes fadeOutElement {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* --- Main Content Reveal Animation --- */
+#mainContent {
+    opacity: 0; /* Start hidden for the animation */
+}
+#mainContent.content-reveal {
+    animation: fadeInSlideUp 0.8s forwards ease-out;
+    animation-delay: 0.6s; /* Starts after lock screen is mostly gone */
+}
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Scroll-Triggered Animations --- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Tech Card Styling --- */
+.tech-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    font-weight: 500;
+    color: #374151; /* gray-700 */
+    transition: transform 0.2s ease-in-out;
+}
+
+.tech-card:hover {
+    transform: translateY(-4px);
+}
+
+.dark .tech-card {
+    background-color: #1f2937; /* gray-800 */
+    color: #d1d5db; /* gray-300 */
+}
+
+.tech-card span {
+    font-size: 2.5rem; /* 40px */
+    margin-bottom: 0.5rem; /* 8px */
+}
+
+/* Helper class to hide elements */
+.hidden {
+    display: none;
+}
