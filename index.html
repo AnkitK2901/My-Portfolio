@@ -5,64 +5,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ankit Kumar | Portfolio</title>
-    <link rel="icon" type="image/png" href="assets/images/favicon.png"?v=1.0>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png?v=1.0">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Configuration for Tailwind CSS dark mode
-        tailwind.config = {
-            darkMode: 'class',
-        }
+        tailwind.config = { darkMode: 'class' }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-slate-50 dark:bg-gray-900 m-0 p-0">
 
-    <div id="lockScreen" class="lockscreen-bg fixed inset-0 z-50 flex flex-col items-center justify-center text-white">
+    <!-- Lock Screen with Real Content (Initially Hidden) -->
+    <div id="lockScreen" class="lockscreen-bg fixed inset-0 z-40 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-1000">
         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
 
         <div class="relative z-10 flex flex-col items-center justify-center w-full h-full px-4 text-center">
+            <img id="profilePic" src="assets/images/profile.jpg" alt="Ankit Kumar Profile Picture" class="w-32 h-32 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full border-4 border-white shadow-lg lock-element">
 
-            <img id="profilePic" src="assets/images/profile.jpg" alt="Ankit Kumar Profile Picture"
-                class="w-32 h-32 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full border-4 border-white shadow-lg lock-element">
-
-            <h1 id="profileName" class="text-3xl md:text-4xl font-medium mt-4 lock-element">Ankit Kumar</h1>
-
-            <p class="text-lg md:text-xl text-gray-200 mt-2 max-w-sm lock-element opacity-80">
-                Creating a beautiful garden!
-            </p>
-
-        </div>
-
-        <div class="absolute bottom-8 left-8 z-10 lock-element bg-black/20 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-            <div class="flex items-end justify-start leading-none">
-                <div id="timeDisplay" class="text-5xl md:text-6xl font-bold">05:07</div>
-                <div class="flex flex-col items-start ml-2 mb-1">
-                    <div id="secondsDisplay" class="text-lg md:text-xl font-bold">38</div>
-                    <div id="ampmDisplay" class="text-lg md:text-xl font-bold">PM</div>
-                </div>
+            <div id="dynamic-text-container" class="h-24 mt-4 flex items-center justify-center text-center">
+                <div id="greeting-message" class="text-3xl md:text-4xl font-medium"></div>
+                <div id="tagline-message" class="text-lg md:text-xl font-mono max-w-md"></div>
             </div>
-            <div id="dateDisplay" class="text-base md:text-lg mt-1 text-gray-300">Thursday, 31 July 2025</div>
         </div>
 
+        <div class="absolute bottom-8 left-8 z-10 lock-element">
+            <div class="bg-black/20 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                <div class="flex items-end justify-start leading-none">
+                    <div id="timeDisplay" class="text-5xl md:text-6xl font-bold"></div>
+                    <div class="flex flex-col items-start ml-2 mb-1">
+                        <div id="secondsDisplay" class="text-lg md:text-xl font-bold"></div>
+                        <div id="ampmDisplay" class="text-lg md:text-xl font-bold"></div>
+                    </div>
+                </div>
+                <div id="dateDisplay" class="text-base md:text-lg mt-1 text-gray-300"></div>
+            </div>
+        </div>
 
-        <div class="absolute bottom-8 right-8 z-10 lock-element">
-            <button id="enterButton"
-                class="w-14 h-14 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-white/50">
-                <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
-                    </path>
+        <div id="enterButtonContainer" class="absolute bottom-8 right-8 z-10 lock-element">
+            <button id="enterButton" class="enter-button">
+                <span class="enter-text">Discover What's Inside!</span>
+                <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
             </button>
         </div>
     </div>
+
+    <!-- Skeleton Loader -->
+    <div id="skeletonLoader" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-white">
+         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="skeleton w-44 h-44 rounded-full"></div>
+            <div class="skeleton w-64 h-8 mt-6"></div>
+            <div class="skeleton w-80 h-6 mt-4"></div>
+        </div>
+        <div class="absolute bottom-8 left-8 z-10">
+            <div class="skeleton w-48 h-16"></div>
+            <div class="skeleton w-56 h-6 mt-3"></div>
+        </div>
+    </div>
+
 
     <div id="mainContent" class="hidden">
         <header
@@ -212,7 +220,6 @@
                     </div>
                 </div>
             </section>
-
         </main>
 
         <footer id="contact" class="bg-gray-800 dark:bg-gray-950 text-white py-20 scroll-reveal">
@@ -257,5 +264,4 @@
 
     <script src="js/script.js"></script>
 </body>
-
 </html>
