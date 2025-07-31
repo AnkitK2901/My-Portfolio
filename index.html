@@ -14,7 +14,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -22,11 +24,13 @@
 <body class="bg-slate-50 dark:bg-gray-900 m-0 p-0">
 
     <!-- Lock Screen with Real Content (Initially Hidden) -->
-    <div id="lockScreen" class="lockscreen-bg fixed inset-0 z-40 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-1000">
+    <div id="lockScreen"
+        class="lockscreen-bg fixed inset-0 z-40 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-1000">
         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
 
         <div class="relative z-10 flex flex-col items-center justify-center w-full h-full px-4 text-center">
-            <img id="profilePic" src="assets/images/profile.jpg" alt="Ankit Kumar Profile Picture" class="w-32 h-32 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full border-4 border-white shadow-lg lock-element">
+            <img id="profilePic" src="assets/images/profile.jpg" alt="Ankit Kumar Profile Picture"
+                class="w-32 h-32 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full border-4 border-white shadow-lg lock-element">
 
             <div id="dynamic-text-container" class="h-24 mt-4 flex items-center justify-center text-center">
                 <div id="greeting-message" class="text-3xl md:text-4xl font-medium"></div>
@@ -34,24 +38,28 @@
             </div>
         </div>
 
-        <div class="absolute bottom-8 left-8 z-10 lock-element">
-            <div class="bg-black/20 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                <div class="flex items-end justify-start leading-none">
-                    <div id="timeDisplay" class="text-5xl md:text-6xl font-bold"></div>
-                    <div class="flex flex-col items-start ml-2 mb-1">
-                        <div id="secondsDisplay" class="text-lg md:text-xl font-bold"></div>
-                        <div id="ampmDisplay" class="text-lg md:text-xl font-bold"></div>
-                    </div>
+        <div class="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 z-10 lock-element p-3 sm:p-4">
+
+            <div class="flex items-end justify-start">
+
+                <div id="timeDisplay" class="text-4xl sm:text-5xl md:text-6xl font-bold">12:05</div>
+
+                <div class="flex flex-col items-start ml-2 leading-tight">
+                    <div id="secondsDisplay" class="text-base sm:text-lg md:text-xl font-bold">54</div>
+                    <div id="ampmDisplay" class="text-base sm:text-lg md:text-xl font-bold">AM</div>
                 </div>
-                <div id="dateDisplay" class="text-base md:text-lg mt-1 text-gray-300"></div>
+
             </div>
+            <div id="dateDisplay" class="text-sm sm:text-base md:text-lg mt-1 text-gray-300">Friday 1 August, 2025</div>
         </div>
 
         <div id="enterButtonContainer" class="absolute bottom-8 right-8 z-10 lock-element">
             <button id="enterButton" class="enter-button">
                 <span class="enter-text">Discover What's Inside!</span>
-                <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                    </path>
                 </svg>
             </button>
         </div>
@@ -59,7 +67,7 @@
 
     <!-- Skeleton Loader -->
     <div id="skeletonLoader" class="fixed inset-0 z-50 flex flex-col items-center justify-center text-white">
-         <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div class="absolute inset-0 bg-black bg-opacity-60"></div>
         <div class="relative z-10 flex flex-col items-center">
             <div class="skeleton w-44 h-44 rounded-full"></div>
             <div class="skeleton w-64 h-8 mt-6"></div>
@@ -77,7 +85,18 @@
             class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm dark:shadow-gray-800">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
                 <a href="#" class="text-2xl font-bold text-violet-600">AK.</a>
-                <div class="flex items-center space-x-4 md:space-x-8 text-sm md:text-base">
+
+                <div class="md:hidden">
+                    <button id="menu-btn" type="button"
+                        class="text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="menu" class="hidden md:flex items-center space-x-4 md:space-x-8 text-sm md:text-base">
                     <a href="#about"
                         class="text-gray-600 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition">About</a>
                     <a href="#projects"
@@ -136,7 +155,8 @@
                             class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">E-commerce Platform</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">A full-featured e-commerce site with a custom backend, payment integration, and a responsive user interface.</p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">A full-featured e-commerce site with a
+                                custom backend, payment integration, and a responsive user interface.</p>
                             <a href="https://github.com/AnkitK2901" target="_blank"
                                 class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
                                 &rarr;</a>
@@ -148,7 +168,8 @@
                             class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Task Management App</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">A collaborative task management tool built with React and a real-time database, featuring boards and lists.</p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">A collaborative task management tool built
+                                with React and a real-time database, featuring boards and lists.</p>
                             <a href="https://github.com/AnkitK2901" target="_blank"
                                 class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
                                 &rarr;</a>
@@ -160,7 +181,8 @@
                             class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Portfolio Website</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">The very site you're on! Built with HTML, CSS, and JS to be fast and responsive.</p>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">The very site you're on! Built with HTML,
+                                CSS, and JS to be fast and responsive.</p>
                             <a href="https://github.com/AnkitK2901" target="_blank"
                                 class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
                                 &rarr;</a>
@@ -199,24 +221,28 @@
                     </div>
                 </div>
             </section>
-            
+
             <section id="testimonials" class="min-h-screen py-20 scroll-reveal">
                 <h2 class="text-4xl font-bold mb-12 text-center text-gray-800 dark:text-white">Testimonials</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Ankit is a highly motivated and skilled developer. He was a key contributor to our project and delivered exceptional results."</p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Ankit is a highly motivated and skilled
+                            developer. He was a key contributor to our project and delivered exceptional results."</p>
                         <div class="font-bold text-gray-900 dark:text-white">Jane Doe</div>
                         <div class="text-sm text-gray-500 dark:text-gray-400">Project Manager, Tech Solutions Inc.</div>
                     </div>
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Working with Ankit was a pleasure. His passion for technology and problem-solving is truly inspiring."</p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Working with Ankit was a pleasure. His passion
+                            for technology and problem-solving is truly inspiring."</p>
                         <div class="font-bold text-gray-900 dark:text-white">John Smith</div>
                         <div class="text-sm text-gray-500 dark:text-gray-400">Senior Developer, Innovate Corp.</div>
                     </div>
                     <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Ankit's leadership in the CSE Society has been invaluable. He is a natural leader and a great team player."</p>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">"Ankit's leadership in the CSE Society has been
+                            invaluable. He is a natural leader and a great team player."</p>
                         <div class="font-bold text-gray-900 dark:text-white">Emily White</div>
-                        <div class="text-sm text-gray-500 dark:text-gray-400">Professor, C.V. Raman Global University</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Professor, C.V. Raman Global University
+                        </div>
                     </div>
                 </div>
             </section>
@@ -227,14 +253,21 @@
                 <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
                 <p class="mb-8 text-gray-300 max-w-lg mx-auto">I'm currently open to new opportunities and
                     collaborations. My inbox is always open. Feel free to reach out!</p>
-                
+
                 <form id="contactForm" class="max-w-xl mx-auto">
                     <div class="flex flex-col md:flex-row gap-4 mb-4">
-                        <input type="text" id="name" name="name" placeholder="Your Name" class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500" required>
-                        <input type="email" id="email" name="email" placeholder="Your Email" class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500" required>
+                        <input type="text" id="name" name="name" placeholder="Your Name"
+                            class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                            required>
+                        <input type="email" id="email" name="email" placeholder="Your Email"
+                            class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                            required>
                     </div>
-                    <textarea name="message" id="message" rows="4" placeholder="Your Message" class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500" required></textarea>
-                    <button type="submit" class="bg-violet-600 text-white font-bold px-8 py-3 mt-6 rounded-full hover:bg-violet-700 transition-all duration-300 text-lg">
+                    <textarea name="message" id="message" rows="4" placeholder="Your Message"
+                        class="w-full bg-gray-700 text-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        required></textarea>
+                    <button type="submit"
+                        class="bg-violet-600 text-white font-bold px-8 py-3 mt-6 rounded-full hover:bg-violet-700 transition-all duration-300 text-lg">
                         Send Message
                     </button>
                 </form>
@@ -264,4 +297,5 @@
 
     <script src="js/script.js"></script>
 </body>
+
 </html>

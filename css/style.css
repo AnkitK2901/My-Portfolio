@@ -155,3 +155,34 @@ body::-webkit-scrollbar { display: none; }
     font-size: 3rem;
     margin-bottom: 0.75rem;
 }
+/* === ADD THIS FOR MOBILE MENU STYLING === */
+@media (max-width: 767px) {
+    #menu.flex {
+        flex-direction: column;
+        position: absolute;
+        top: 68px; /* Adjust this value to position it below your header */
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+        backdrop-filter: blur(5px); /* Optional: Adds a blur effect */
+        padding: 1rem;
+        border-bottom: 1px solid #e5e7eb; /* Light gray border */
+    }
+
+    .dark #menu.flex {
+        background-color: rgba(17, 24, 39, 0.95); /* Semi-transparent dark gray */
+        border-bottom-color: #374151; /* Darker border */
+    }
+
+    #menu a {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 0; /* Add more vertical padding to links */
+    }
+
+    /* Ensure the theme toggle button also sits correctly */
+    #menu #theme-toggle {
+        margin-top: 0.5rem;
+    }
+}
+/* ========================================= */

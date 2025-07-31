@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
     const contactForm = document.getElementById('contactForm');
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
 
 
     let animationLoopActive = true;
@@ -73,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
             greetingEl.textContent = greetingText;
             greetingEl.classList.add('visible');
             await delay(2500);
-            
+
             // 2. Hide Greeting
             greetingEl.classList.remove('visible');
             await delay(1000);
-            
+
             // 3. Type and Erase Tagline
             if (animationLoopActive) {
                 await typeAndErase(taglineEl, taglineText);
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupDarkModeToggle() {
         if (!themeToggleButton) return;
         const updateThemeIcon = (isDarkMode) => {
-            if(themeToggleDarkIcon && themeToggleLightIcon){
+            if (themeToggleDarkIcon && themeToggleLightIcon) {
                 themeToggleDarkIcon.classList.toggle('hidden', !isDarkMode);
                 themeToggleLightIcon.classList.toggle('hidden', isDarkMode);
             }
@@ -131,7 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContent.classList.remove('hidden');
         mainContent.classList.add('content-reveal');
     });
-
+    menuBtn.addEventListener('click', () => {
+        // Toggles a 'hidden' class to show/hide and 'flex' to ensure it's a flex container when visible
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+    });
     // --- Scroll Reveal Logic ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -171,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     preloadImages(['assets/images/bg.jpg', 'assets/images/profile.jpg'], () => {
         skeletonLoader.style.opacity = '0';
         lockScreen.style.opacity = '1';
-        
+
         setTimeout(() => {
             skeletonLoader.remove();
             updateClock();
