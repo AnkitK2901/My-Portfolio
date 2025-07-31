@@ -92,12 +92,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Clock Function ---
     function updateClock() {
         const now = new Date();
-        const fullTimeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        const timeParts = fullTimeString.split(/:| /);
-        timeDisplay.textContent = `${timeParts[0]}:${timeParts[1]}`;
-        secondsDisplay.textContent = timeParts[2];
-        ampmDisplay.textContent = timeParts[3];
-        dateDisplay.textContent = now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        // Manually format parts to ensure consistency
+        const hours = String(now.getHours() % 12 || 12).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+
+        // Update the content of the respective elements
+        if (timeDisplay) {
+            timeDisplay.textContent = `${hours}:${minutes}`;
+        }
+        if (secondsDisplay) {
+            secondsDisplay.textContent = seconds;
+        }
+        if (ampmDisplay) {
+            ampmDisplay.textContent = ampm;
+        }
+        if (dateDisplay) {
+            dateDisplay.textContent = now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        }
     }
 
     // --- Dark Mode Logic ---

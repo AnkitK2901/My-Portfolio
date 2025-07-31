@@ -186,3 +186,15 @@ body::-webkit-scrollbar { display: none; }
     }
 }
 /* ========================================= */
+/* --- Mobile-Specific Button Styles --- */
+@media (max-width: 767px) {
+    /*
+      On mobile devices, we don't have a "hover" state.
+      This rule ensures the text NEVER appears on tap or hover,
+      keeping it hidden so only the button's action occurs.
+    */
+    .enter-button:hover .enter-text {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
