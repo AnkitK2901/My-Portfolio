@@ -20,7 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     let animationLoopActive = true;
-
+    if (window.innerWidth < 768 || "ontouchstart" in window) {
+        const enterText = document.querySelector(".enter-text");
+        if (enterText) {
+            enterText.remove(); // Completely removes the element
+        }
+    }
     // --- Asset Loading ---
     function preloadImages(urls, callback) {
         let loadedCount = 0;
