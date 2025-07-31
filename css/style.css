@@ -6,14 +6,23 @@
     --bg-light: #f9fafb;
 }
 
-html { scrollbar-width: none; }
+html {
+    scrollbar-width: none;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     -ms-overflow-style: none;
     background-color: var(--bg-light);
 }
-.dark body { background-color: var(--bg-dark); }
-body::-webkit-scrollbar { display: none; }
+
+.dark body {
+    background-color: var(--bg-dark);
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
 
 .lockscreen-bg {
     background-image: url('../assets/images/bg.jpg');
@@ -29,8 +38,15 @@ body::-webkit-scrollbar { display: none; }
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: .5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
 }
 
 
@@ -44,20 +60,22 @@ body::-webkit-scrollbar { display: none; }
     background: none;
     border: none;
     padding: 0;
-    position: relative; /* Needed for hover effect positioning */
+    position: relative;
+    /* Needed for hover effect positioning */
 }
 
 .enter-text {
     color: white;
     font-weight: 500;
-    font-size: 1.125rem; /* text-lg */
+    font-size: 1.125rem;
+    /* text-lg */
     opacity: 0;
     /* Start slightly to the right and faded out */
     transform: translateX(10px);
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
     white-space: nowrap;
     margin-right: 1rem;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .enter-button:hover .enter-text {
@@ -66,11 +84,13 @@ body::-webkit-scrollbar { display: none; }
 }
 
 .arrow-icon {
-    width: 2.5rem; /* 40px */
-    height: 2.5rem; /* 40px */
+    width: 2.5rem;
+    /* 40px */
+    height: 2.5rem;
+    /* 40px */
     color: white;
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .enter-button:hover .arrow-icon {
@@ -85,50 +105,96 @@ body::-webkit-scrollbar { display: none; }
     transition: opacity 0.5s ease, transform 0.5s ease;
     position: absolute;
 }
+
 #greeting-message.visible {
     opacity: 1;
     transform: scale(1);
 }
+
 #tagline-message {
     position: absolute;
     font-family: 'Space Mono', monospace;
 }
+
 .typing-cursor {
     border-right: 2px solid white;
     animation: blink 1s step-end infinite;
 }
+
 @keyframes blink {
-    from, to { border-right-color: transparent; }
-    50% { border-right-color: white; }
+
+    from,
+    to {
+        border-right-color: transparent;
+    }
+
+    50% {
+        border-right-color: white;
+    }
 }
 
 
 /* --- Lock Screen Fade Animations --- */
-.lockscreen-bg.fade-out { animation: fadeOutBg 1s forwards ease-in-out; }
-.lock-element-fade-out { animation: fadeOutElement 0.5s forwards ease-in; }
-@keyframes fadeOutBg { to { opacity: 0; visibility: hidden; } }
-@keyframes fadeOutElement { to { opacity: 0; transform: translateY(-25px); } }
+.lockscreen-bg.fade-out {
+    animation: fadeOutBg 1s forwards ease-in-out;
+}
+
+.lock-element-fade-out {
+    animation: fadeOutElement 0.5s forwards ease-in;
+}
+
+@keyframes fadeOutBg {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeOutElement {
+    to {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+}
 
 
 /* --- Main Content Reveal Animation --- */
-#mainContent { opacity: 0; }
-#mainContent.content-reveal { animation: fadeInSlideUp 1s forwards ease-out 0.5s; }
+#mainContent {
+    opacity: 0;
+}
+
+#mainContent.content-reveal {
+    animation: fadeInSlideUp 1s forwards ease-out 0.5s;
+}
+
 @keyframes fadeInSlideUp {
-    from { opacity: 0; transform: translateY(35px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Helper class */
-.hidden { display: none; }
+.hidden {
+    display: none;
+}
+
 .scroll-reveal {
     opacity: 0;
     transform: translateY(35px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+
 .scroll-reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
+
 .tech-card {
     display: flex;
     flex-direction: column;
@@ -143,41 +209,52 @@ body::-webkit-scrollbar { display: none; }
     color: var(--text-dark);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
 .dark .tech-card {
     background-color: #1f2937;
     color: #d1d5db;
 }
+
 .tech-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
 .tech-card span {
     font-size: 3rem;
     margin-bottom: 0.75rem;
 }
+
 /* === ADD THIS FOR MOBILE MENU STYLING === */
 @media (max-width: 767px) {
     #menu.flex {
         flex-direction: column;
         position: absolute;
-        top: 68px; /* Adjust this value to position it below your header */
+        top: 68px;
+        /* Adjust this value to position it below your header */
         left: 0;
         right: 0;
-        background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
-        backdrop-filter: blur(5px); /* Optional: Adds a blur effect */
+        background-color: rgba(255, 255, 255, 0.95);
+        /* Semi-transparent white */
+        backdrop-filter: blur(5px);
+        /* Optional: Adds a blur effect */
         padding: 1rem;
-        border-bottom: 1px solid #e5e7eb; /* Light gray border */
+        border-bottom: 1px solid #e5e7eb;
+        /* Light gray border */
     }
 
     .dark #menu.flex {
-        background-color: rgba(17, 24, 39, 0.95); /* Semi-transparent dark gray */
-        border-bottom-color: #374151; /* Darker border */
+        background-color: rgba(17, 24, 39, 0.95);
+        /* Semi-transparent dark gray */
+        border-bottom-color: #374151;
+        /* Darker border */
     }
 
     #menu a {
         width: 100%;
         text-align: center;
-        padding: 0.75rem 0; /* Add more vertical padding to links */
+        padding: 0.75rem 0;
+        /* Add more vertical padding to links */
     }
 
     /* Ensure the theme toggle button also sits correctly */
@@ -185,16 +262,17 @@ body::-webkit-scrollbar { display: none; }
         margin-top: 0.5rem;
     }
 }
+
 /* ========================================= */
 /* --- Mobile-Specific Button Styles --- */
 @media (max-width: 767px) {
+
     /*
       On mobile devices, we don't have a "hover" state.
       This rule ensures the text NEVER appears on tap or hover,
       keeping it hidden so only the button's action occurs.
     */
-    .enter-button:hover .enter-text {
-        opacity: 0;
-        transform: translateY(10px);
+    .enter-button .enter-text {
+        display: none;
     }
 }
