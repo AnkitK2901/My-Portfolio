@@ -4,16 +4,23 @@
     --text-dark: #1f2937;
     --bg-dark: #111827;
     --bg-light: #f9fafb;
+    --circle-1-light: #a78bfa;
+    --circle-2-light: #818cf8;
+    --circle-1-dark: #4c1d95;
+    --circle-2-dark: #3730a3;
 }
 
 html {
     scrollbar-width: none;
+    scroll-behavior: smooth; 
 }
 
 body {
     font-family: 'Inter', sans-serif;
     -ms-overflow-style: none;
     background-color: var(--bg-light);
+    position: relative;
+    transition: background-color 0.5s ease;
 }
 
 .dark body {
@@ -23,6 +30,38 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
+
+/* === Animated Background Circles === */
+.bg-circle-1, .bg-circle-2 {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    transition: transform 1s ease-in-out, background-color 1s ease-in-out;
+}
+.bg-circle-1 {
+    width: 400px;
+    height: 400px;
+    background-color: var(--circle-1-light);
+    top: -150px;
+    left: -150px;
+}
+.bg-circle-2 {
+    width: 400px;
+    height: 400px;
+    background-color: var(--circle-2-light);
+    bottom: -150px;
+    right: -150px;
+}
+.dark.circles-active .bg-circle-1 {
+    background-color: var(--circle-1-dark);
+    transform: translateX(100px) translateY(50px) scale(1.2);
+}
+.dark.circles-active .bg-circle-2 {
+    background-color: var(--circle-2-dark);
+    transform: translateX(-100px) translateY(-50px) scale(1.2);
+}
+
 
 .lockscreen-bg {
     background-image: url('../assets/images/background.jpg');
@@ -38,15 +77,8 @@ body::-webkit-scrollbar {
 }
 
 @keyframes pulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: .5;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
 }
 
 
@@ -61,16 +93,13 @@ body::-webkit-scrollbar {
     border: none;
     padding: 0;
     position: relative;
-    /* Needed for hover effect positioning */
 }
 
 .enter-text {
     color: white;
     font-weight: 500;
     font-size: 1.125rem;
-    /* text-lg */
     opacity: 0;
-    /* Start slightly to the right and faded out */
     transform: translateX(10px);
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
     white-space: nowrap;
@@ -80,9 +109,7 @@ body::-webkit-scrollbar {
 
 .arrow-icon {
     width: 2.5rem;
-    /* 40px */
     height: 2.5rem;
-    /* 40px */
     color: white;
     transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
@@ -117,74 +144,128 @@ body::-webkit-scrollbar {
 }
 
 @keyframes blink {
-
-    from,
-    to {
-        border-right-color: transparent;
-    }
-
-    50% {
-        border-right-color: white;
-    }
+    from, to { border-right-color: transparent; }
+    50% { border-right-color: white; }
 }
 
+/* Page Transition Animations */
+.lockscreen-bg.fade-out { animation: fadeOutBg 1s forwards ease-in-out; }
+.lock-element-fade-out { animation: fadeOutElement 0.5s forwards ease-in; }
+#mainContent.content-reveal { animation: fadeInSlideUp 0.8s forwards ease-out; }
+#mainContent.content-hide { animation: fadeOutSlideUp 0.8s forwards ease-in-out; }
 
-/* --- Lock Screen Fade Animations --- */
-.lockscreen-bg.fade-out {
-    animation: fadeOutBg 1s forwards ease-in-out;
-}
-
-.lock-element-fade-out {
-    animation: fadeOutElement 0.5s forwards ease-in;
-}
-
-@keyframes fadeOutBg {
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-@keyframes fadeOutElement {
-    to {
-        opacity: 0;
-        transform: translateY(-25px);
-    }
-}
-
-
-/* --- Main Content Reveal Animation --- */
-#mainContent {
-    opacity: 0;
-}
-
-#mainContent.content-reveal {
-    animation: fadeInSlideUp 1s forwards ease-out 0.5s;
-}
-
+@keyframes fadeOutBg { to { opacity: 0; visibility: hidden; } }
+@keyframes fadeOutElement { to { opacity: 0; transform: translateY(-25px); } }
 @keyframes fadeInSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(35px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
 }
+@keyframes fadeOutSlideUp {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(35px); }
+}
+
+
+/* Section Scroll Margin */
+main section {
+    scroll-margin-top: 5rem; 
+}
+
+
+/* --- Theme Switcher --- */
+.theme-switcher {
+    cursor: pointer;
+    width: 32px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.rope {
+    width: 3px;
+    height: 20px;
+    background-color: #9ca3af;
+    transition: height 0.2s ease;
+}
+.handle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #4b5563;
+    position: relative;
+    overflow: hidden;
+    transform-origin: top center;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.theme-switcher:hover .rope { height: 25px; }
+.theme-switcher:hover .handle { transform: scale(1.1); }
+
+.sun, .moon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transition: transform 0.5s ease-in-out;
+}
+.sun {
+    background-color: #f59e0b;
+    transform: translate(-50%, -50%) scale(1);
+}
+.moon {
+    background-color: #e5e7eb;
+    transform: translate(-50%, 100%) scale(0);
+}
+.dark .handle .sun { transform: translate(-50%, -150%) scale(0); }
+.dark .handle .moon { transform: translate(-50%, -50%) scale(1); }
+
+/* --- Journey Timeline --- */
+.timeline {
+    position: relative;
+    max-width: 3xl;
+    margin: 0 auto;
+    padding-left: 2rem;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: #d1d5db;
+    transform: translateX(14px);
+}
+.dark .timeline::before { background-color: #4b5563; }
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: 3px solid var(--bg-light);
+    transform: translateX(7px);
+}
+.dark .timeline-dot { border-color: var(--bg-dark); }
+.timeline-content { padding-left: 2rem; }
+
 
 /* Helper class */
-.hidden {
-    display: none;
-}
+.hidden { display: none; }
 
 .scroll-reveal {
     opacity: 0;
     transform: translateY(35px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-
 .scroll-reveal.visible {
     opacity: 1;
     transform: translateY(0);
@@ -197,7 +278,8 @@ body::-webkit-scrollbar {
     justify-content: center;
     width: 130px;
     height: 130px;
-    background-color: var(--bg-light);
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
     border-radius: 1rem;
     box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     font-weight: 500;
@@ -206,7 +288,7 @@ body::-webkit-scrollbar {
 }
 
 .dark .tech-card {
-    background-color: #1f2937;
+    background-color: rgba(31, 41, 55, 0.5);
     color: #d1d5db;
 }
 
@@ -220,70 +302,50 @@ body::-webkit-scrollbar {
     margin-bottom: 0.75rem;
 }
 
-/* === ADD THIS FOR MOBILE MENU STYLING === */
+/* === FOOTER THEME FIX === */
+footer {
+    background-color: #e5e7eb; /* Light mode background */
+    color: #4b5563; /* Light mode text */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark footer {
+    background-color: #1f2937; /* Dark mode background */
+    color: #d1d5db; /* Dark mode text */
+}
+
+/* Mobile Menu Styling */
 @media (max-width: 767px) {
     #menu.flex {
         flex-direction: column;
         position: absolute;
         top: 68px;
-        /* Adjust this value to position it below your header */
         left: 0;
         right: 0;
         background-color: rgba(255, 255, 255, 0.95);
-        /* Semi-transparent white */
         backdrop-filter: blur(5px);
-        /* Optional: Adds a blur effect */
         padding: 1rem;
         border-bottom: 1px solid #e5e7eb;
-        /* Light gray border */
     }
 
     .dark #menu.flex {
         background-color: rgba(17, 24, 39, 0.95);
-        /* Semi-transparent dark gray */
         border-bottom-color: #374151;
-        /* Darker border */
     }
 
     #menu a {
         width: 100%;
         text-align: center;
         padding: 0.75rem 0;
-        /* Add more vertical padding to links */
     }
-
-    /* Ensure the theme toggle button also sits correctly */
-    #menu #theme-toggle {
-        margin-top: 0.5rem;
-    }
+    
+    #menu .theme-switcher { margin: 0.5rem auto 0; }
 }
 
-/* ========================================= */
-/* --- Mobile-Specific Button Styles --- */
-@media (max-width: 767px) {
-
-    /*
-      On mobile devices, we don't have a "hover" state.
-      This rule ensures the text NEVER appears on tap or hover,
-      keeping it hidden so only the button's action occurs.
-    */
-    .enter-button:hover .enter-text {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-}
-
-/* --- Desktop-Only Hover Effect --- */
-/* This rule only applies to screens wider than 767px (desktops/laptops) */
+/* --- Desktop-Only Hover Effect for Enter Button --- */
 @media (min-width: 768px) {
     .enter-button:hover .enter-text {
         opacity: 1;
         transform: translateY(0);
     }
-}
-@media (max-width: 767px) {
-  /* Completely hide the enter text on mobile */
-  .enter-text {
-    display: none !important;
-  }
 }

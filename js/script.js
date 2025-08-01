@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Element References ---
+    const body = document.body;
     const lockScreen = document.getElementById('lockScreen');
     const skeletonLoader = document.getElementById('skeletonLoader');
     const enterButton = document.getElementById('enterButton');
@@ -10,22 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateDisplay = document.getElementById('dateDisplay');
     const greetingEl = document.getElementById('greeting-message');
     const taglineEl = document.getElementById('tagline-message');
-    const themeToggleButton = document.getElementById('theme-toggle');
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-    const contactForm = document.getElementById('contactForm');
+    const themeSwitcher = document.getElementById('theme-switcher');
+    const homeLogo = document.getElementById('home-logo');
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
     const menuBtn = document.getElementById('menu-btn');
     const menu = document.getElementById('menu');
 
-
     let animationLoopActive = true;
+
+    // --- Remove enter text on mobile ---
     if (window.innerWidth < 768 || "ontouchstart" in window) {
         const enterText = document.querySelector(".enter-text");
         if (enterText) {
-            enterText.remove(); // Completely removes the element
+            enterText.remove(); 
         }
     }
+
     // --- Asset Loading ---
     function preloadImages(urls, callback) {
         let loadedCount = 0;
@@ -57,21 +58,20 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i <= text.length; i++) {
             if (!animationLoopActive) return;
             element.innerHTML = text.substring(0, i) + '<span class="typing-cursor"></span>';
-            await delay(60); // Typing speed
+            await delay(60);
         }
-        await delay(2500); // Pause after typing
+        await delay(2500);
 
         // Erasing
         for (let i = text.length; i >= 0; i--) {
             if (!animationLoopActive) return;
             element.innerHTML = text.substring(0, i) + '<span class="typing-cursor"></span>';
-            await delay(30); // Erasing speed
+            await delay(30);
         }
     }
 
     async function animationLoop() {
         while (animationLoopActive) {
-            // 1. Show Greeting
             const hour = new Date().getHours();
             let greetingText;
             if (hour < 12) greetingText = "Good Morning !";
@@ -81,11 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
             greetingEl.classList.add('visible');
             await delay(2500);
 
-            // 2. Hide Greeting
             greetingEl.classList.remove('visible');
             await delay(1000);
 
-            // 3. Type and Erase Tagline
             if (animationLoopActive) {
                 await typeAndErase(taglineEl, taglineText);
                 taglineEl.innerHTML = '';
@@ -97,66 +95,86 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Clock Function ---
     function updateClock() {
         const now = new Date();
-
-        // Manually format parts to ensure consistency
         const hours = String(now.getHours() % 12 || 12).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const seconds = String(now.getSeconds()).padStart(2, '0');
         const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
 
-        // Update the content of the respective elements
-        if (timeDisplay) {
-            timeDisplay.textContent = `${hours}:${minutes}`;
-        }
-        if (secondsDisplay) {
-            secondsDisplay.textContent = seconds;
-        }
-        if (ampmDisplay) {
-            ampmDisplay.textContent = ampm;
-        }
-        if (dateDisplay) {
-            dateDisplay.textContent = now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-        }
+        if (timeDisplay) timeDisplay.textContent = `${hours}:${minutes}`;
+        if (secondsDisplay) secondsDisplay.textContent = seconds;
+        if (ampmDisplay) ampmDisplay.textContent = ampm;
+        if (dateDisplay) dateDisplay.textContent = now.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     }
 
     // --- Dark Mode Logic ---
     function setupDarkModeToggle() {
-        if (!themeToggleButton) return;
-        const updateThemeIcon = (isDarkMode) => {
-            if (themeToggleDarkIcon && themeToggleLightIcon) {
-                themeToggleDarkIcon.classList.toggle('hidden', !isDarkMode);
-                themeToggleLightIcon.classList.toggle('hidden', isDarkMode);
-            }
-        };
+        if (!themeSwitcher) return;
 
-        if (localStorage.getItem('theme') === 'light') {
+        if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.remove('dark');
-            updateThemeIcon(false);
         } else {
             document.documentElement.classList.add('dark');
-            updateThemeIcon(true);
         }
 
-        themeToggleButton.addEventListener('click', () => {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            updateThemeIcon(isDark);
+        themeSwitcher.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
         });
     }
 
-    // --- Enter Animation ---
+    // --- Page Transitions ---
     enterButton.addEventListener('click', () => {
         animationLoopActive = false;
+        
+        // Add classes to trigger animations
         document.querySelectorAll('.lock-element').forEach(el => el.classList.add('lock-element-fade-out'));
         lockScreen.classList.add('fade-out');
         mainContent.classList.remove('hidden');
         mainContent.classList.add('content-reveal');
+        
+        // Add class for circle animation
+        setTimeout(() => {
+            body.classList.add('circles-active');
+        }, 500);
     });
+
+    homeLogo.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Deactivate circle animations
+        body.classList.remove('circles-active');
+
+        // Add class to hide main content
+        mainContent.classList.add('content-hide');
+
+        mainContent.addEventListener('animationend', (event) => {
+            // Ensure this only runs for the content-hide animation
+            if (event.animationName === 'fadeOutSlideUp') {
+                // Hide content and reset its classes
+                mainContent.classList.add('hidden');
+                mainContent.classList.remove('content-reveal', 'content-hide');
+                
+                // Reset lock screen for re-entry
+                lockScreen.classList.remove('fade-out');
+                lockScreen.style.opacity = '1';
+                lockScreen.style.visibility = 'visible';
+                document.querySelectorAll('.lock-element').forEach(el => {
+                    el.classList.remove('lock-element-fade-out');
+                });
+                
+                // Restart animation loop
+                animationLoopActive = true;
+                animationLoop();
+            }
+        }, { once: true });
+    });
+
+    // --- Mobile Menu ---
     menuBtn.addEventListener('click', () => {
-        // Toggles a 'hidden' class to show/hide and 'flex' to ensure it's a flex container when visible
         menu.classList.toggle('hidden');
         menu.classList.toggle('flex');
     });
+
     // --- Scroll Reveal Logic ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -169,31 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     scrollRevealElements.forEach(el => observer.observe(el));
 
-    // --- Contact Form Validation ---
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            const validateEmail = (email) => /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(String(email).toLowerCase());
-
-            if (name === '' || email === '' || message === '') {
-                alert('Please fill in all fields.');
-                return;
-            }
-            if (!validateEmail(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        });
-    }
-
     // --- Initial Setup ---
     preloadImages(['assets/images/background.jpg', 'assets/images/profile.jpg'], () => {
+        lockScreen.style.display = 'flex'; 
         skeletonLoader.style.opacity = '0';
         lockScreen.style.opacity = '1';
 
@@ -203,6 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setInterval(updateClock, 1000);
             animationLoop();
             setupDarkModeToggle();
-        }, 500); // Wait for skeleton fade out transition
+        }, 500);
     });
 });
