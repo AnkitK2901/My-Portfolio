@@ -12,7 +12,7 @@
 
 html {
     scrollbar-width: none;
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
 }
 
 body {
@@ -32,13 +32,15 @@ body::-webkit-scrollbar {
 }
 
 /* === Animated Background Circles === */
-.bg-circle-1, .bg-circle-2 {
+.bg-circle-1,
+.bg-circle-2 {
     position: fixed;
     border-radius: 50%;
     filter: blur(100px);
     z-index: 0;
-    transition: transform 1s ease-in-out, background-color 1s ease-in-out;
+    transition: transform 0.8s ease-in-out, background-color 0.8s ease-in-out;
 }
+
 .bg-circle-1 {
     width: 400px;
     height: 400px;
@@ -46,6 +48,7 @@ body::-webkit-scrollbar {
     top: -150px;
     left: -150px;
 }
+
 .bg-circle-2 {
     width: 400px;
     height: 400px;
@@ -53,12 +56,22 @@ body::-webkit-scrollbar {
     bottom: -150px;
     right: -150px;
 }
-.dark.circles-active .bg-circle-1 {
+
+/* Color change for dark mode */
+.dark .bg-circle-1 {
     background-color: var(--circle-1-dark);
+}
+
+.dark .bg-circle-2 {
+    background-color: var(--circle-2-dark);
+}
+
+/* Animate transform when circles are active, regardless of theme */
+body.circles-active .bg-circle-1 {
     transform: translateX(100px) translateY(50px) scale(1.2);
 }
-.dark.circles-active .bg-circle-2 {
-    background-color: var(--circle-2-dark);
+
+body.circles-active .bg-circle-2 {
     transform: translateX(-100px) translateY(-50px) scale(1.2);
 }
 
@@ -67,6 +80,7 @@ body::-webkit-scrollbar {
     background-image: url('../assets/images/background.jpg');
     background-size: cover;
     background-position: center;
+    transition: opacity 0.8s ease-in-out;
 }
 
 /* --- Skeleton Loader Styles --- */
@@ -77,8 +91,15 @@ body::-webkit-scrollbar {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: .5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
 }
 
 
@@ -144,31 +165,80 @@ body::-webkit-scrollbar {
 }
 
 @keyframes blink {
-    from, to { border-right-color: transparent; }
-    50% { border-right-color: white; }
+
+    from,
+    to {
+        border-right-color: transparent;
+    }
+
+    50% {
+        border-right-color: white;
+    }
 }
 
 /* Page Transition Animations */
-.lockscreen-bg.fade-out { animation: fadeOutBg 1s forwards ease-in-out; }
-.lock-element-fade-out { animation: fadeOutElement 0.5s forwards ease-in; }
-#mainContent.content-reveal { animation: fadeInSlideUp 0.8s forwards ease-out; }
-#mainContent.content-hide { animation: fadeOutSlideUp 0.8s forwards ease-in-out; }
-
-@keyframes fadeOutBg { to { opacity: 0; visibility: hidden; } }
-@keyframes fadeOutElement { to { opacity: 0; transform: translateY(-25px); } }
-@keyframes fadeInSlideUp {
-    from { opacity: 0; transform: translateY(35px); }
-    to { opacity: 1; transform: translateY(0); }
+.lockscreen-bg.fade-out {
+    animation: fadeOutBg 0.8s forwards ease-in-out;
 }
+
+.lockscreen-bg.fade-in {
+    animation: fadeInBg 0.8s forwards ease-in-out;
+}
+
+.lock-element-fade-out {
+    animation: fadeOutElement 0.5s forwards ease-in;
+}
+
+#mainContent.content-reveal {
+    animation: fadeInSlideUp 0.8s forwards ease-out;
+}
+
+#mainContent.content-hide {
+    animation: fadeOutSlideUp 0.8s forwards ease-in-out;
+}
+
+@keyframes fadeOutBg {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeOutElement {
+    to {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes fadeOutSlideUp {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(35px); }
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(35px);
+    }
 }
 
 
 /* Section Scroll Margin */
 main section {
-    scroll-margin-top: 5rem; 
+    scroll-margin-top: 5rem;
 }
 
 
@@ -181,12 +251,14 @@ main section {
     flex-direction: column;
     align-items: center;
 }
+
 .rope {
     width: 3px;
     height: 20px;
     background-color: #9ca3af;
     transition: height 0.2s ease;
 }
+
 .handle {
     width: 32px;
     height: 32px;
@@ -197,10 +269,17 @@ main section {
     transform-origin: top center;
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
-.theme-switcher:hover .rope { height: 25px; }
-.theme-switcher:hover .handle { transform: scale(1.1); }
 
-.sun, .moon {
+.theme-switcher:hover .rope {
+    height: 25px;
+}
+
+.theme-switcher:hover .handle {
+    transform: scale(1.1);
+}
+
+.sun,
+.moon {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -209,16 +288,24 @@ main section {
     left: 50%;
     transition: transform 0.5s ease-in-out;
 }
+
 .sun {
     background-color: #f59e0b;
     transform: translate(-50%, -50%) scale(1);
 }
+
 .moon {
     background-color: #e5e7eb;
     transform: translate(-50%, 100%) scale(0);
 }
-.dark .handle .sun { transform: translate(-50%, -150%) scale(0); }
-.dark .handle .moon { transform: translate(-50%, -50%) scale(1); }
+
+.dark .handle .sun {
+    transform: translate(-50%, -150%) scale(0);
+}
+
+.dark .handle .moon {
+    transform: translate(-50%, -50%) scale(1);
+}
 
 /* --- Journey Timeline --- */
 .timeline {
@@ -227,6 +314,7 @@ main section {
     margin: 0 auto;
     padding-left: 2rem;
 }
+
 .timeline::before {
     content: '';
     position: absolute;
@@ -237,12 +325,16 @@ main section {
     background-color: #d1d5db;
     transform: translateX(14px);
 }
-.dark .timeline::before { background-color: #4b5563; }
+
+.dark .timeline::before {
+    background-color: #4b5563;
+}
 
 .timeline-item {
     position: relative;
     margin-bottom: 3rem;
 }
+
 .timeline-dot {
     position: absolute;
     left: 0;
@@ -254,18 +346,27 @@ main section {
     border: 3px solid var(--bg-light);
     transform: translateX(7px);
 }
-.dark .timeline-dot { border-color: var(--bg-dark); }
-.timeline-content { padding-left: 2rem; }
+
+.dark .timeline-dot {
+    border-color: var(--bg-dark);
+}
+
+.timeline-content {
+    padding-left: 2rem;
+}
 
 
 /* Helper class */
-.hidden { display: none; }
+.hidden {
+    display: none;
+}
 
 .scroll-reveal {
     opacity: 0;
     transform: translateY(35px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+
 .scroll-reveal.visible {
     opacity: 1;
     transform: translateY(0);
@@ -304,14 +405,18 @@ main section {
 
 /* === FOOTER THEME FIX === */
 footer {
-    background-color: #e5e7eb; /* Light mode background */
-    color: #4b5563; /* Light mode text */
+    background-color: #e5e7eb;
+    /* Light mode background */
+    color: #4b5563;
+    /* Light mode text */
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .dark footer {
-    background-color: #1f2937; /* Dark mode background */
-    color: #d1d5db; /* Dark mode text */
+    background-color: #1f2937;
+    /* Dark mode background */
+    color: #d1d5db;
+    /* Dark mode text */
 }
 
 /* Mobile Menu Styling */
@@ -338,8 +443,10 @@ footer {
         text-align: center;
         padding: 0.75rem 0;
     }
-    
-    #menu .theme-switcher { margin: 0.5rem auto 0; }
+
+    #menu .theme-switcher {
+        margin: 0.5rem auto 0;
+    }
 }
 
 /* --- Desktop-Only Hover Effect for Enter Button --- */

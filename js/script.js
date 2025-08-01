@@ -18,12 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu = document.getElementById('menu');
 
     let animationLoopActive = true;
+    let currentAnimationId = 0;
 
     // --- Remove enter text on mobile ---
     if (window.innerWidth < 768 || "ontouchstart" in window) {
         const enterText = document.querySelector(".enter-text");
         if (enterText) {
-            enterText.remove(); 
+            enterText.remove();
         }
     }
 
@@ -53,25 +54,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Animation Loop Logic ---
     const taglineText = "Welcome to my portfolio website! Curious to explore and learn more about me?";
 
-    async function typeAndErase(element, text) {
+    async function typeAndErase(element, text, id) {
         // Typing
         for (let i = 0; i <= text.length; i++) {
-            if (!animationLoopActive) return;
+            if (id !== currentAnimationId || !animationLoopActive) return;
             element.innerHTML = text.substring(0, i) + '<span class="typing-cursor"></span>';
             await delay(60);
         }
+
+        if (id !== currentAnimationId) return;
         await delay(2500);
 
         // Erasing
         for (let i = text.length; i >= 0; i--) {
-            if (!animationLoopActive) return;
+            if (id !== currentAnimationId || !animationLoopActive) return;
             element.innerHTML = text.substring(0, i) + '<span class="typing-cursor"></span>';
             await delay(30);
         }
     }
 
-    async function animationLoop() {
+    async function animationLoop(id) {
         while (animationLoopActive) {
+            if (id !== currentAnimationId) return;
             const hour = new Date().getHours();
             let greetingText;
             if (hour < 12) greetingText = "Good Morning !";
@@ -79,15 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
             else greetingText = "Good Evening !";
             greetingEl.textContent = greetingText;
             greetingEl.classList.add('visible');
+
+            if (id !== currentAnimationId) return;
             await delay(2500);
 
             greetingEl.classList.remove('visible');
+            if (id !== currentAnimationId) return;
             await delay(1000);
 
             if (animationLoopActive) {
-                await typeAndErase(taglineEl, taglineText);
+                await typeAndErase(taglineEl, taglineText, id);
                 taglineEl.innerHTML = '';
             }
+            if (id !== currentAnimationId) return;
             await delay(500);
         }
     }
@@ -125,13 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Page Transitions ---
     enterButton.addEventListener('click', () => {
         animationLoopActive = false;
-        
+        // Reset text states immediately to prevent overlap
+        greetingEl.classList.remove('visible');
+        taglineEl.innerHTML = '';
+
         // Add classes to trigger animations
         document.querySelectorAll('.lock-element').forEach(el => el.classList.add('lock-element-fade-out'));
         lockScreen.classList.add('fade-out');
         mainContent.classList.remove('hidden');
         mainContent.classList.add('content-reveal');
-        
+
         // Add class for circle animation
         setTimeout(() => {
             body.classList.add('circles-active');
@@ -140,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     homeLogo.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         // Deactivate circle animations
         body.classList.remove('circles-active');
 
@@ -153,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Hide content and reset its classes
                 mainContent.classList.add('hidden');
                 mainContent.classList.remove('content-reveal', 'content-hide');
-                
+
                 // Reset lock screen for re-entry
                 lockScreen.classList.remove('fade-out');
                 lockScreen.style.opacity = '1';
@@ -161,10 +172,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.lock-element').forEach(el => {
                     el.classList.remove('lock-element-fade-out');
                 });
-                
-                // Restart animation loop
+                greetingEl.classList.remove('visible');
+                taglineEl.innerHTML = '';
+                // Restart animation loop with a new ID
                 animationLoopActive = true;
-                animationLoop();
+                currentAnimationId++;
+                animationLoop(currentAnimationId);
             }
         }, { once: true });
     });
@@ -189,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Setup ---
     preloadImages(['assets/images/background.jpg', 'assets/images/profile.jpg'], () => {
-        lockScreen.style.display = 'flex'; 
+        lockScreen.style.display = 'flex';
         skeletonLoader.style.opacity = '0';
         lockScreen.style.opacity = '1';
 
@@ -197,7 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
             skeletonLoader.remove();
             updateClock();
             setInterval(updateClock, 1000);
-            animationLoop();
+            currentAnimationId++;
+            animationLoop(currentAnimationId);
             setupDarkModeToggle();
         }, 500);
     });
