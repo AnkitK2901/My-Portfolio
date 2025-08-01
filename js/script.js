@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Initial Setup ---
-    preloadImages(['assets/images/bg.jpg', 'assets/images/profile.jpg'], () => {
+    preloadImages(['assets/images/background.jpg', 'assets/images/profile.jpg'], () => {
         skeletonLoader.style.opacity = '0';
         lockScreen.style.opacity = '1';
 
