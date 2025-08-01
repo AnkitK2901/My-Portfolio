@@ -74,9 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // 1. Show Greeting
             const hour = new Date().getHours();
             let greetingText;
-            if (hour < 12) greetingText = "Good Morning";
-            else if (hour < 18) greetingText = "Good Afternoon";
-            else greetingText = "Good Evening";
+            if (hour < 12) greetingText = "Good Morning !";
+            else if (hour < 18) greetingText = "Good Afternoon !";
+            else greetingText = "Good Evening !";
             greetingEl.textContent = greetingText;
             greetingEl.classList.add('visible');
             await delay(2500);
