@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     homeLogo.addEventListener('click', (e) => {
         e.preventDefault();
-
+        scrollRevealElements.forEach(el => el.classList.remove('visible'));
         // Deactivate circle animations
         body.classList.remove('circles-active');
 
@@ -195,6 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
             }
         });
     }, {
