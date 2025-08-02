@@ -18,6 +18,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -82,8 +84,7 @@
 
 
     <div id="mainContent" class="hidden">
-        <header
-            class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm dark:shadow-gray-800">
+        <header class="bg-white dark:bg-gray-900 sticky top-0 z-40 shadow-md dark:shadow-gray-800">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
                 <a href="#" id="home-logo" class="text-2xl font-bold text-violet-600">AK.</a>
 
@@ -124,136 +125,256 @@
         <main class="container mx-auto px-6 py-12 relative z-10">
 
             <section id="projects" class="min-h-screen py-20 scroll-reveal">
-                <h2 class="text-4xl font-bold mb-8 text-center text-gray-800 dark:text-white">My Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div
-                        class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-md dark:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="assets/images/project/ibecc.png"
-                            alt="IBECC Demo" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">IBECC Demo</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">A full-featured e-commerce site built with
-                                React and a custom Node.js backend, featuring Stripe integration for payments.</p>
-                            <a href="https://github.com/AnkitK2901/IBECC" target="_blank"
-                                class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
-                                &rarr;</a>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-md dark:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="assets/images/project/quiz.png"
-                            alt="Quiz-App" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Quiz-Game</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">A collaborative task management tool built
-                                with React and Firebase, featuring boards, lists, and drag-and-drop functionality.</p>
-                            <a href="https://github.com/AnkitK2901/Quiz-Game" target="_blank"
-                                class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
-                                &rarr;</a>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-md dark:shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                        <img src="assets/images/project/currency.png"
-                            alt="Currency-Converter" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Currency-Converter</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">The very site you're on! Built with HTML,
-                                Tailwind CSS, and vanilla JavaScript to be fast, responsive, and showcase my work.</p>
-                            <a href="https://github.com/AnkitK2901/Currency-Converter" target="_blank"
-                                class="text-violet-600 dark:text-violet-400 font-semibold hover:underline">View Code
-                                &rarr;</a>
-                        </div>
+    <h2 class="text-4xl font-bold mb-12 text-center text-gray-800 dark:text-white">My Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="project-card">
+            <img src="assets/images/project/ibecc.png" alt="IBECC Demo" class="project-image">
+            <div class="project-name">IBECC Demo</div>
+            <div class="project-overlay">
+                <p class="project-description">A full-featured e-commerce site built with React and a custom
+                    Node.js backend, featuring Stripe integration for payments.</p>
+                <div class="project-links">
+                    <a href="https://ibecc.clustercode.dev/" target="_blank" class="project-button">View Demo</a>
+                    <a href="https://github.com/AnkitK2901/IBECC" target="_blank"
+                        class="project-button">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="assets/images/project/quiz.png" alt="Quiz-App" class="project-image">
+            <div class="project-name">Quiz-Game</div>
+            <div class="project-overlay">
+                <p class="project-description">A collaborative task management tool built with React and
+                    Firebase, featuring boards, lists, and drag-and-drop functionality.</p>
+                <div class="project-links">
+                    <a href="https://quiz.clustercode.dev/" target="_blank" class="project-button">View Demo</a>
+                    <a href="https://github.com/AnkitK2901/Quiz-Game" target="_blank"
+                        class="project-button">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="assets/images/project/currency.png" alt="Currency-Converter" class="project-image">
+            <div class="project-name">Currency-Converter</div>
+            <div class="project-overlay">
+                <p class="project-description">The very site you're on! Built with HTML, Tailwind CSS, and
+                    vanilla JavaScript to be fast, responsive, and showcase my work.</p>
+                <div class="project-links">
+                    <a href="https://currency.clustercode.dev/" target="_blank" class="project-button">View Demo</a>
+                    <a href="https://github.com/AnkitK2901/Currency-Converter" target="_blank"
+                        class="project-button">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-3 flex justify-center gap-8 w-full">
+            <div class="project-card">
+                <img src="assets/images/project/portfolio.png" alt="My Portfolio Project" class="project-image">
+                <div class="project-name">My Portfolio</div>
+                <div class="project-overlay">
+                    <p class="project-description">A clean, interactive portfolio designed to speak for both my work and who I am — from animated details to a custom lockscreen..</p>
+                    <div class="project-links">
+                        <a href="https://portfolio.clustercode.dev/" target="_blank" class="project-button">View Demo</a>
+                        <a href="https://github.com/AnkitK2901/My-Portfolio" target="_blank" class="project-button">View Code</a>
                     </div>
                 </div>
-            </section>
+            </div>
 
+            <div class="project-card">
+                <img src="assets/images/project/portfolio.png" alt="Pay Slip Generator Project"
+                    class="project-image">
+                <div class="project-name">Pay Slip Generator</div>
+                <div class="project-overlay">
+                    <p class="project-description">A tool to automatically generate professional pay slips based on
+                        user input, designed for ease of use.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="project-button">View Demo</a>
+                        <a href="https://github.com/AnkitK2901/Pay_Slip" target="_blank" class="project-button">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</section>
+
+            <!-- Tech Stack Section: Re-organized by Category -->
             <section id="tech" class="min-h-screen py-20 scroll-reveal">
                 <div class="w-full text-center">
-                    <h2 class="text-4xl font-bold mb-12 text-gray-800 dark:text-white">Tech Stack</h2>
+                    <h2 class="text-4xl font-bold mb-16 text-gray-800 dark:text-white">Technologies & Tools</h2>
 
                     <div class="mb-16">
-                        <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Technologies I'm
-                            Familiar With</h3>
+                        <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Web Development
+                            (Frontend & Backend)</h3>
                         <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
-                            <div class="tech-card"><span>📄</span> HTML</div>
-                            <div class="tech-card"><span>🎨</span> CSS</div>
-                            <div class="tech-card"><span>⚡️</span> JavaScript</div>
-                            <div class="tech-card"><span>⚛️</span> React.js</div>
-                            <div class="tech-card"><span>📱</span> Kotlin</div>
-                            <div class="tech-card"><span>🐦</span> Flutter</div>
-                            <div class="tech-card"><span>🗃️</span> SQL</div>
-                            <div class="tech-card"><span>☁️</span> GCP</div>
-                            <div class="tech-card"><span>🌿</span> Git</div>
-                            <div class="tech-card"><span></span> GitHub</div>
+                            <div class="tech-card"><i class="devicon-html5-plain text-5xl mb-2"></i> HTML</div>
+                            <div class="tech-card"><i class="devicon-css3-plain text-5xl mb-2"></i> CSS</div>
+                            <div class="tech-card"><i class="devicon-javascript-plain text-5xl mb-2"></i> JavaScript
+                            </div>
+                            <div class="tech-card"><i class="devicon-react-original text-5xl mb-2"></i> React</div>
+                            <div class="tech-card"><i class="devicon-tailwindcss-plain text-5xl mb-2"></i> Tailwind CSS
+                            </div>
+                            <div class="tech-card"><i class="devicon-flask-original text-5xl mb-2"></i> Flask</div>
+                            <div class="tech-card"><i class="devicon-java-plain text-5xl mb-2"></i> Java</div>
+                            <div class="tech-card"><i class="devicon-nginx-original text-5xl mb-2"></i> Nginx</div>
+                            <div class="tech-card"><i class="devicon-mysql-plain text-5xl mb-2"></i> SQL</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-16">
+                        <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Data Science & Machine
+                            Learning</h3>
+                        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+                            <div class="tech-card"><i class="devicon-python-plain text-5xl mb-2"></i> Python</div>
+                            <div class="tech-card"><i class="devicon-numpy-original text-5xl mb-2"></i> NumPy</div>
+                            <div class="tech-card"><i class="devicon-pandas-original text-5xl mb-2"></i> Pandas</div>
+                            <!-- Scikit-learn Card with Custom SVG -->
+                            <div class="tech-card">
+                                <svg class="w-14 h-14 mb-2 text-violet-600" fill="currentColor" viewBox="0 0 90 90"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <path
+                                            d="M63.3,25.4c-8,0-14.5,6.5-14.5,14.5s6.5,14.5,14.5,14.5s14.5-6.5,14.5-14.5S71.3,25.4,63.3,25.4z" />
+                                        <path
+                                            d="M26.7,40.1c-8,0-14.5,6.5-14.5,14.5s6.5,14.5,14.5,14.5s14.5-6.5,14.5-14.5S34.7,40.1,26.7,40.1z" />
+                                    </g>
+                                </svg>
+                                Scikit-learn
+                            </div>
+                            <div class="tech-card"><i class="devicon-tensorflow-original text-5xl mb-2"></i> TensorFlow
+                            </div>
+                            <div class="tech-card"><i class="devicon-pytorch-original text-5xl mb-2"></i> PyTorch</div>
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Currently Learning</h3>
+                        <h3 class="text-2xl font-semibold mb-8 text-gray-700 dark:text-gray-300">Application Development
+                            & Tools</h3>
                         <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
-                            <div class="tech-card"><span>⚙️</span> Node.js</div>
-                            <div class="tech-card"><span>📦</span> Express.js</div>
+                            <div class="tech-card"><i class="devicon-flutter-plain text-5xl mb-2"></i> Flutter</div>
+                            <div class="tech-card"><i class="devicon-kotlin-plain text-5xl mb-2"></i> Kotlin</div>
+                            <!-- Java Swing Card with Custom SVG -->
+                            <div class="tech-card">
+                                <svg class="w-14 h-14 mb-2 text-violet-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                Java Swing
+                            </div>
+                            <div class="tech-card"><i class="devicon-git-plain text-5xl mb-2"></i> Git & GitHub</div>
+                            <div class="tech-card"><i class="devicon-googlecloud-plain text-5xl mb-2"></i> GCP</div>
+                            <div class="tech-card"><i class="devicon-vscode-plain text-5xl mb-2"></i> VS Code</div>
+                            <div class="tech-card"><i class="devicon-intellij-plain text-5xl mb-2"></i> IntelliJ IDEA
+                            </div>
+                            <div class="tech-card"><i class="devicon-androidstudio-plain text-5xl mb-2"></i> Android
+                                Studio</div>
+                            <div class="tech-card"><i class="devicon-jupyter-plain text-5xl mb-2"></i> Jupyter</div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section id="journey" class="min-h-screen py-20 scroll-reveal">
-                <h2 class="text-4xl font-bold mb-12 text-center text-gray-800 dark:text-white">Journey So Far</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
+                <h2 class="text-4xl font-bold mb-20 text-center text-gray-800 dark:text-white">Journey So Far</h2>
+                <div class="journey-timeline">
+                    <div class="journey-container left">
+                        <div class="journey-content">
                             <h3 class="text-xl font-bold text-gray-900 dark:text-white">[Year] - [Event Title]</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mt-2">[Description of the event, your role, or
-                                what you learned. e.g., Started my B.Tech in Computer Science at C.V. Raman Global
-                                University.]</p>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">[Description of the event, e.g., Started my
+                                B.Tech in Computer Science.]</p>
                         </div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
+                    <div class="journey-container right">
+                        <div class="journey-content">
                             <h3 class="text-xl font-bold text-gray-900 dark:text-white">[Year] - [Event Title]</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mt-2">[Description of the event, your role, or
-                                what you learned. e.g., Elected as Joint Secretary of the CSE Society, organized a
-                                university-wide hackathon.]</p>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">[Description of the event, e.g., Organized
+                                a university-wide hackathon.]</p>
+                        </div>
+                    </div>
+                    <div class="journey-container left">
+                        <div class="journey-content">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">[Year] - [Event Title]</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">[Add another event description here.]</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="about" class="min-h-screen flex items-center scroll-reveal">
-                <div class="w-full">
-                    <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-white">About Me</h2>
-                    <p class="text-lg text-gray-700 dark:text-gray-300 max-w-3xl">
-                        Hello! I'm Ankit Kumar, a final-year Computer Science student at C.V. Raman Global University.
-                        My journey into development began with Android, but my curiosity soon led me to the expansive
-                        world of full-stack web development. I find immense satisfaction in bringing ideas to life, from
-                        designing intuitive front-end interfaces to engineering robust back-end systems.
-                        <br><br>
-                        Beyond coding, I am passionate about leadership and community building. I am constantly
-                        exploring new technologies and am confident in my ability to contribute meaningfully to the
-                        ever-evolving world of web development.
-                    </p>
+            <section id="about" class="min-h-screen flex items-center py-20 scroll-reveal">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-content">
+                        <h2 class="text-4xl font-bold mb-4 text-gray-800 dark:text-white">About Me</h2>
+                        <p class="text-lg text-gray-700 dark:text-gray-300">
+                            Hello! I'm Ankit Kumar, a passionate developer with a knack for turning ideas into reality.
+                            My journey spans from Android apps to full-stack web solutions, always driven by a love for
+                            clean code and intuitive design.
+                        </p>
+                    </div>
+                    <div class="image-carousel-container">
+                        <div class="image-carousel">
+                            <img src="https://placehold.co/600x400/a78bfa/white?text=Image+1" alt="Carousel Image 1">
+                            <img src="https://placehold.co/600x400/818cf8/white?text=Image+2" alt="Carousel Image 2">
+                            <img src="https://placehold.co/600x400/f59e0b/white?text=Image+3" alt="Carousel Image 3">
+                            <img src="https://placehold.co/600x400/10b981/white?text=Image+4" alt="Carousel Image 4">
+                            <img src="https://placehold.co/600x400/a78bfa/white?text=Image+1" alt="Carousel Image 1">
+                            <img src="https://placehold.co/600x400/818cf8/white?text=Image+2" alt="Carousel Image 2">
+                            <img src="https://placehold.co/600x400/f59e0b/white?text=Image+3" alt="Carousel Image 3">
+                            <img src="https://placehold.co/600x400/10b981/white?text=Image+4" alt="Carousel Image 4">
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
 
-        <footer id="contact" class="py-20 scroll-reveal bg-gray-200/80 dark:bg-gray-900/80 backdrop-blur-sm">
+        <footer id="contact" class="py-20 scroll-reveal bg-gray-200/80 dark:bg-gray-800/50 backdrop-blur-sm">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold mb-4 text-gray-800 dark:text-white">Get In Touch</h2>
                 <p class="mb-8 max-w-lg mx-auto text-gray-600 dark:text-gray-300">
-                    I'm currently open to new opportunities and collaborations. My inbox is always open. Whether you
-                    have a question or just want to say hi, I’ll try my best to get back to you!
+                    Have a project in mind or just want to connect? Send me a message!
                 </p>
 
-                <a href="mailto:ankit.kumar.cvrgu@gmail.com"
-                    class="inline-block bg-violet-600 text-white font-bold px-8 py-3 mb-10 rounded-full hover:bg-violet-700 transition-all duration-300 text-lg">
-                    Say Hello
-                </a>
+                <form id="contact-form" class="max-w-xl mx-auto text-left">
+                    <div class="mb-4">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Your
+                            Name</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Your
+                            Email</label>
+                        <input type="email" id="email" name="email" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message"
+                            class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
+                        <textarea id="message" name="message" rows="4" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-violet-500 focus:border-violet-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit"
+                            class="inline-block bg-violet-600 text-white font-bold px-8 py-3 rounded-full hover:bg-violet-700 transition-all duration-300 text-lg">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
 
-                <div class="mt-10 flex justify-center space-x-6">
+                <div id="form-status" class="mt-6"></div>
+
+                <div class="mt-12 flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/ankit-kumar-cvrgu/" target="_blank"
+                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
                     <a href="https://github.com/AnkitK2901" target="_blank"
                         class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition">
                         <span class="sr-only">GitHub</span>
@@ -263,12 +384,12 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </a>
-                    <a href="https://www.linkedin.com/in/ankit-kumar-cvrgu/" target="_blank"
+                    <a href="https://www.instagram.com/imankit080/" target="_blank"
                         class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition">
-                        <span class="sr-only">LinkedIn</span>
+                        <span class="sr-only">Instagram</span>
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path
-                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
                         </svg>
                     </a>
                 </div>
@@ -277,6 +398,11 @@
     </div>
 
     <script src="js/script.js"></script>
+    <button id="back-to-top" class="back-to-top-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
 </body>
 
 </html>

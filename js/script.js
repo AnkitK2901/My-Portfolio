@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
     const menuBtn = document.getElementById('menu-btn');
     const menu = document.getElementById('menu');
+    const contactForm = document.getElementById('contact-form'); // New
+    const formStatus = document.getElementById('form-status'); // New
 
     let animationLoopActive = true;
     let currentAnimationId = 0;
@@ -199,6 +201,64 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.1
     });
     scrollRevealElements.forEach(el => observer.observe(el));
+
+    // --- NEW: Contact Form AJAX Submission ---
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+
+            // IMPORTANT: Replace with your Formspree endpoint URL
+            const formspreeEndpoint = 'https://formspree.io/f/mdkdlave';
+
+            try {
+                const response = await fetch(formspreeEndpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.innerHTML = "Thanks for your message! I'll get back to you.";
+                    formStatus.className = 'form-success';
+                    contactForm.reset();
+                } else {
+                    const data = await response.json();
+                    if (Object.hasOwn(data, 'errors')) {
+                        formStatus.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+                    } else {
+                        formStatus.innerHTML = "Oops! There was a problem submitting your form.";
+                    }
+                    formStatus.className = 'form-error';
+                }
+            } catch (error) {
+                formStatus.innerHTML = "Oops! There was a problem submitting your form.";
+                formStatus.className = 'form-error';
+            }
+        });
+    }
+    // --- NEW: Back to Top Button Logic ---
+    const backToTopButton = document.getElementById('back-to-top');
+
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            // Show button after scrolling down 300px
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     // --- Initial Setup ---
     preloadImages(['assets/images/background.jpg', 'assets/images/profile.jpg'], () => {
