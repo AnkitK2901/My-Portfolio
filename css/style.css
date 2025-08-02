@@ -324,11 +324,12 @@ section[id] {
     height: 220px;
     /* Fixed height for consistency */
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .project-card:hover .project-image {
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
+    filter: blur(8px);
 }
 
 .project-name {
@@ -366,6 +367,67 @@ section[id] {
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+/* === Project Card Styles === */
+.project-card {
+    position: relative;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.project-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+    filter: blur(8px);
+    /* Strong blur for readability */
+}
+
+.project-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-name {
+    opacity: 0;
+}
+
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    /* This dark overlay is KEY for text readability */
+    background-color: rgba(17, 24, 39, 0.85);
+    color: #d1d5db;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
 .project-card:hover .project-overlay {
     opacity: 1;
     transform: translateY(0);
@@ -373,12 +435,57 @@ section[id] {
 
 .project-description {
     margin-bottom: 1rem;
+    max-width: 90%;
+}
+
+.tech-stack-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0 1.25rem 0;
+}
+
+/* This is the single, correct rule for the circular icons */
+.tech-tag {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    /* 40px */
+    height: 2.5rem;
+    /* 40px */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #e5e7eb;
+}
+
+.tech-tag i {
+    font-size: 1.5rem;
+    /* 24px icon size */
+}
+
+.tech-tag:hover::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #111827;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 10;
 }
 
 .project-links {
     display: flex;
     gap: 1rem;
     margin-top: auto;
+    /* Pushes the links to the bottom */
 }
 
 
@@ -726,4 +833,43 @@ footer {
 .back-to-top-button:hover {
     background-color: #5b21b6;
     /* A slightly darker violet */
+}
+
+@media (max-width: 767px) {
+    .project-overlay {
+        padding: 1rem;
+        /* Reduce padding on mobile */
+        justify-content: space-around;
+        /* Better distribute content in tight spaces */
+    }
+
+    .project-description {
+        font-size: 0.875rem;
+        /* Make description text smaller */
+        line-height: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tech-stack-container {
+        margin: 0.5rem 0;
+        /* Reduce space around icons */
+    }
+
+    .tech-tag {
+        width: 2rem;
+        /* Make icon circles smaller (32px) */
+        height: 2rem;
+    }
+
+    .tech-tag i {
+        font-size: 1.25rem;
+        /* Make icons smaller (20px) */
+    }
+
+    .project-links a {
+        padding: 0.25rem 0.75rem;
+        /* Make buttons smaller */
+        font-size: 0.875rem;
+        /* Make button text smaller */
+    }
 }
