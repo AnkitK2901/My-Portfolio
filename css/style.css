@@ -873,3 +873,52 @@ footer {
         /* Make button text smaller */
     }
 }
+/* === NEW: Tabbed Interface Styles === */
+.tabs .tab {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #6b7280; /* gray-500 */
+    position: relative;
+    transition: color 0.3s ease;
+}
+.dark .tabs .tab {
+    color: #9ca3af; /* gray-400 */
+}
+
+.tabs .tab:hover {
+    color: var(--primary-color);
+}
+
+.tabs .tab.active {
+    color: var(--primary-color);
+}
+
+/* The underline effect for the active tab */
+.tabs .tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Tab content panels */
+[data-tab-content] {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+[data-tab-content].active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

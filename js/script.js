@@ -18,6 +18,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu = document.getElementById('menu');
     const contactForm = document.getElementById('contact-form'); // New
     const formStatus = document.getElementById('form-status'); // New
+    const tabs = document.querySelectorAll('[data-tab-target]');
+    const tabContents = document.querySelectorAll('[data-tab-content]');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = document.querySelector(tab.dataset.tabTarget);
+
+            // Hide all other content
+            tabContents.forEach(tabContent => {
+                tabContent.classList.remove('active');
+            });
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show the active tab and content
+            tab.classList.add('active');
+            target.classList.add('active');
+        });
+    });
 
     let animationLoopActive = true;
     let currentAnimationId = 0;
