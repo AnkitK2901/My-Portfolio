@@ -305,68 +305,6 @@ section[id] {
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* === NEW: Project Card Styles === */
-.project-card {
-    position: relative;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
-.project-image {
-    width: 100%;
-    height: 220px;
-    /* Fixed height for consistency */
-    object-fit: cover;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.project-card:hover .project-image {
-    /* transform: scale(1.05); */
-    filter: blur(8px);
-}
-
-.project-name {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    color: white;
-    font-weight: bold;
-    font-size: 1.25rem;
-    transition: opacity 0.3s ease;
-}
-
-.project-card:hover .project-name {
-    opacity: 0;
-}
-
-.project-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(17, 24, 39, 0.85);
-    /* bg-gray-900 with opacity */
-    color: #d1d5db;
-    /* text-gray-300 */
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
 /* === Project Card Styles === */
 .project-card {
     position: relative;
@@ -610,9 +548,10 @@ section[id] {
 
 /* Media queries - Responsive timeline */
 @media screen and (max-width: 768px) {
-    .lockscreen-bg{
+    .lockscreen-bg {
         background-size: cover;
     }
+
     .journey-timeline::after {
         left: 31px;
     }
@@ -940,22 +879,31 @@ footer {
 /* Style for the navbar WHEN SCROLLED */
 header.scrolled {
     /* For LIGHT mode */
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-    backdrop-filter: blur(5px);                 /* The "frosted glass" blur effect */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Semi-transparent white */
+    backdrop-filter: blur(5px);
+    /* The "frosted glass" blur effect */
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .dark header.scrolled {
     /* For DARK mode */
-    background-color: rgba(17, 24, 39, 0.9);   /* Semi-transparent dark gray */
+    background-color: rgba(17, 24, 39, 0.9);
+    /* Semi-transparent dark gray */
     backdrop-filter: blur(5px);
 }
+
 /* New style for the active navigation link */
 #menu a.active {
     color: var(--primary-color);
-    font-weight: 700; /* Makes the active link bold */
+    font-weight: 700;
+    /* Makes the active link bold */
 }
+
 /* Ensures the font-mono class uses Space Mono consistently */
 .font-mono {
     font-family: 'Space Mono', monospace;
+    /* This forces the browser to use the slashed zero character */
+    -moz-font-feature-settings: "zero";
+    font-feature-settings: "zero";
 }
