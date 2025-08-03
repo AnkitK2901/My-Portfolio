@@ -20,6 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const formStatus = document.getElementById('form-status'); // New
     const tabs = document.querySelectorAll('[data-tab-target]');
     const tabContents = document.querySelectorAll('[data-tab-content]');
+    const paySlipDemoButton = document.getElementById('payslip-demo-btn');
+
+    if (paySlipDemoButton) {
+        paySlipDemoButton.addEventListener('click', (e) => {
+            // Prevent the link from trying to open a new tab
+            e.preventDefault();
+
+            // Show the custom alert message
+            alert("This is a desktop application and cannot be hosted online. Please view the source code on GitHub to see how it works!");
+        });
+    }
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {

@@ -75,7 +75,7 @@ body.circles-active .bg-circle-2 {
 
 
 .lockscreen-bg {
-    background-image: url('../assets/images/background.jpg');
+    background-image: url('../assets/images/Untitled\ design\ \(2\).png');
     background-size: cover;
     background-position: center;
     transition: opacity 0.8s ease-in-out;
@@ -873,6 +873,7 @@ footer {
         /* Make button text smaller */
     }
 }
+
 /* === NEW: Tabbed Interface Styles === */
 .tabs .tab {
     padding: 1rem 1.5rem;
@@ -881,12 +882,15 @@ footer {
     background: none;
     font-weight: 500;
     font-size: 1rem;
-    color: #6b7280; /* gray-500 */
+    color: #6b7280;
+    /* gray-500 */
     position: relative;
     transition: color 0.3s ease;
 }
+
 .dark .tabs .tab {
-    color: #9ca3af; /* gray-400 */
+    color: #9ca3af;
+    /* gray-400 */
 }
 
 .tabs .tab:hover {
@@ -919,6 +923,13 @@ footer {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
