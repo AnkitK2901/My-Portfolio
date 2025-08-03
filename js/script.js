@@ -315,6 +315,51 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    // --- NEW: Active Nav Link on Scroll (Scrollspy) ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#menu a');
+
+    if (sections.length && navLinks.length) {
+        const observerOptions = {
+            root: null, // observes intersections relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.85 // Section is considered "active" when 40% is visible
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all nav links
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+
+                    // Find the corresponding nav link and add the active class
+                    const correspondingLink = document.querySelector(`#menu a[href="#${entry.target.id}"]`);
+                    if (correspondingLink) {
+                        correspondingLink.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe each section
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+    }
+    // --- NEW: Navbar Scroll Effect ---
+    const header = document.querySelector('#mainContent header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            // Add 'scrolled' class if user scrolls more than 50px, otherwise remove it
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
 
     // --- Initial Setup ---
     preloadImages(['assets/images/background.jpg', 'assets/images/profile.jpg'], () => {

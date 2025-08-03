@@ -76,7 +76,7 @@ body.circles-active .bg-circle-2 {
 
 .lockscreen-bg {
     background-image: url('../assets/images/Untitled\ design\ \(2\).png');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     transition: opacity 0.8s ease-in-out;
 }
@@ -932,4 +932,23 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Style for the navbar WHEN SCROLLED */
+header.scrolled {
+    /* For LIGHT mode */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    backdrop-filter: blur(5px);                 /* The "frosted glass" blur effect */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.dark header.scrolled {
+    /* For DARK mode */
+    background-color: rgba(17, 24, 39, 0.9);   /* Semi-transparent dark gray */
+    backdrop-filter: blur(5px);
+}
+/* New style for the active navigation link */
+#menu a.active {
+    color: var(--primary-color);
+    font-weight: 700; /* Makes the active link bold */
 }
