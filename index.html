@@ -9,7 +9,16 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class' }
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['"Space Mono"', 'monospace']
+                    }
+                }
+            }
+        }
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -581,7 +590,7 @@
             <div
                 class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
                 <p class="text-gray-600 dark:text-gray-400 mb-4 md:mb-0">
-                   Ankit Kumar © 2025. All Rights Reserved.
+                    Ankit Kumar © 2025. All Rights Reserved.
                 </p>
                 <div class="flex space-x-4">
                     <a href="https://www.linkedin.com/in/ankit-kumar-cvrgu/" target="_blank"
