@@ -20,16 +20,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const formStatus = document.getElementById('form-status'); // New
     const tabs = document.querySelectorAll('[data-tab-target]');
     const tabContents = document.querySelectorAll('[data-tab-content]');
+    // --- Custom Modal Logic for Pay Slip Demo ---
     const paySlipDemoButton = document.getElementById('payslip-demo-btn');
+    const modalOverlay = document.getElementById('custom-modal-overlay');
+    const modal = document.getElementById('custom-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    function showModal() {
+        if (modalOverlay && modal) {
+            modalOverlay.classList.remove('hidden');
+            modal.classList.remove('hidden');
+        }
+    }
+
+    function hideModal() {
+        if (modalOverlay && modal) {
+            modalOverlay.classList.add('hidden');
+            modal.classList.add('hidden');
+        }
+    }
 
     if (paySlipDemoButton) {
         paySlipDemoButton.addEventListener('click', (e) => {
-            // Prevent the link from trying to open a new tab
-            e.preventDefault();
-
-            // Show the custom alert message
-            alert("This is a desktop application and cannot be hosted online. Please view the source code on GitHub to see how it works!");
+            e.preventDefault(); // Prevent the link from navigating
+            showModal();
         });
+    }
+
+    // Add event listeners to close the modal
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', hideModal);
+    }
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', hideModal);
     }
 
     tabs.forEach(tab => {
