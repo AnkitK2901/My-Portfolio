@@ -610,6 +610,9 @@ section[id] {
 
 /* Media queries - Responsive timeline */
 @media screen and (max-width: 768px) {
+    .lockscreen-bg{
+        background-size: cover;
+    }
     .journey-timeline::after {
         left: 31px;
     }
