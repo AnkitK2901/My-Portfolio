@@ -952,3 +952,7 @@ header.scrolled {
     color: var(--primary-color);
     font-weight: 700; /* Makes the active link bold */
 }
+/* Ensures the font-mono class uses Space Mono consistently */
+.font-mono {
+    font-family: 'Space Mono', monospace;
+}
