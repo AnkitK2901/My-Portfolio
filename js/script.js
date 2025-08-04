@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const observerOptions = {
             root: null, // observes intersections relative to the viewport
             rootMargin: '0px',
-            threshold: 0.85 // Section is considered "active" when 40% is visible
+            threshold: 0.4 // Section is considered "active" when 40% is visible
         };
 
         const sectionObserver = new IntersectionObserver((entries, observer) => {
