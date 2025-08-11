@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Element References ---
     const body = document.body;
+    const imageCarousel = document.querySelector('.image-carousel');
     const lockScreen = document.getElementById('lockScreen');
     const skeletonLoader = document.getElementById('skeletonLoader');
     const enterButton = document.getElementById('enterButton');
@@ -374,6 +375,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    // --- NEW: Infinite Scroll for Image Carousel ---
+    function setupInfiniteScroll() {
+        if (!imageCarousel) return;
+
+        // Clone the images to ensure there's enough content to scroll smoothly
+        const images = imageCarousel.querySelectorAll('img');
+        images.forEach(img => {
+            const clone = img.cloneNode(true);
+            imageCarousel.appendChild(clone);
+        });
+
+        let currentPosition = 0;
+        // You can adjust the speed here. Higher number = faster scroll.
+        const speed = 0.75;
+
+        function animate() {
+            currentPosition += speed;
+
+            // If the scroll position has passed the original set of images, reset it
+            if (currentPosition >= imageCarousel.scrollWidth / 2) {
+                currentPosition = 0;
+            }
+
+            imageCarousel.style.transform = `translateX(-${currentPosition}px)`;
+
+            // Request the next animation frame to create a smooth loop
+            requestAnimationFrame(animate);
+        }
+
+        // Start the animation
+        animate();
+    }
 
     // --- Initial Setup ---
     preloadImages(['assets/images/background.jpg', 'assets/images/profile.jpg'], () => {
@@ -388,6 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentAnimationId++;
             animationLoop(currentAnimationId);
             setupDarkModeToggle();
+            setupInfiniteScroll();
         }, 500);
     });
 });
