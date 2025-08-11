@@ -243,6 +243,19 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.classList.toggle('hidden');
         menu.classList.toggle('flex');
     });
+    // --- ADD THIS NEW BLOCK ---
+    // Add event listener to all links within the menu to close it on click
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Check if the mobile menu is open before trying to close it
+            if (menu.classList.contains('flex')) {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
+            }
+        });
+    });
+    // --- END OF NEW BLOCK ---
 
     // --- Scroll Reveal Logic ---
     const observer = new IntersectionObserver((entries) => {
@@ -265,7 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(contactForm);
 
             // IMPORTANT: Replace with your Formspree endpoint URL
-            const formspreeEndpoint = 'https://formspree.io/f/mdkdlave';
+            // The Formspree URL is decoded from Base64 to prevent email scraping by bots.
+            const formspreeEndpoint = atob('aHR0cHM6Ly9mb3Jtc3ByZWUuaW8vZi9tZGtkbGF2ZQ==');
 
             try {
                 const response = await fetch(formspreeEndpoint, {
@@ -322,8 +336,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sections.length && navLinks.length) {
         const observerOptions = {
             root: null, // observes intersections relative to the viewport
-            rootMargin: '0px',
-            threshold: 0.4 // Section is considered "active" when 40% is visible
+            rootMargin: '0px 0px -85% 0px', // Only consider sections in the top 15% of the viewport
+            threshold: 0 // Trigger as soon as a section enters this zone
         };
 
         const sectionObserver = new IntersectionObserver((entries, observer) => {
