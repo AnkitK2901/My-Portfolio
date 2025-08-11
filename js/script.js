@@ -284,6 +284,20 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.classList.toggle('hidden');
         menu.classList.toggle('flex');
     });
+    // --- NEW: Close mobile menu when clicking outside ---
+    document.addEventListener('click', (event) => {
+        // First, check if the menu is open and if the click was outside of the menu container AND not on the menu button.
+        // The 'contains' method checks if the clicked element (event.target) is a descendant of the menu or the menu button.
+        const isMenuOpen = menu.classList.contains('flex');
+        const isClickInsideMenu = menu.contains(event.target);
+        const isClickOnMenuBtn = menuBtn.contains(event.target);
+
+        if (isMenuOpen && !isClickInsideMenu && !isClickOnMenuBtn) {
+            // If all conditions are met, close the menu.
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
+        }
+    });
     // --- ADD THIS NEW BLOCK ---
     // Add event listener to all links within the menu to close it on click
     const menuLinks = menu.querySelectorAll('a');
