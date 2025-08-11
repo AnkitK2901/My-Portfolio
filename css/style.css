@@ -41,23 +41,25 @@ body::-webkit-scrollbar {
     transition: all 1.2s ease-in-out;
 }
 
-/* --- LIGHT MODE (Initial Positions) --- */
+/* --- LIGHT MODE (New Initial Positions) --- */
 .bg-circle-1 {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     background-color: var(--circle-1-light);
-    /* Starts at the Top-Left */
-    top: -150px;
-    left: -150px;
+    /* Starts at the Top */
+    top: -200px;
+    left: 10vw;
+    /* Positioned slightly from the left */
 }
 
 .bg-circle-2 {
     width: 400px;
     height: 400px;
     background-color: var(--circle-2-light);
-    /* Starts at the Bottom-Right */
+    /* Starts at the Bottom */
     bottom: -200px;
-    right: -200px;
+    right: 10vw;
+    /* Positioned slightly from the right */
 }
 
 /* --- DARK MODE (New Positions) --- */
