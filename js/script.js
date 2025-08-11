@@ -330,38 +330,118 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    // --- NEW: Active Nav Link on Scroll (Scrollspy) ---
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('#menu a');
+    // --- Active Nav Link on Scroll (Scrollspy) [FINAL ARCHITECTURE V2] ---
+    if ('IntersectionObserver' in window) {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('#menu a');
+        const triggers = document.querySelectorAll('.scroll-trigger');
+        const navLinksArray = Array.from(navLinks);
 
-    if (sections.length && navLinks.length) {
+        // --- 1. Track Scroll Direction ---
+        let lastScrollY = window.scrollY;
+        let scrollDirection = 'down';
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY) {
+                scrollDirection = 'down';
+            } else {
+                scrollDirection = 'up';
+            }
+            lastScrollY = window.scrollY;
+        }, { passive: true });
+
+        // --- 2. Observe Tripwires (for standard scrolling) ---
         const observerOptions = {
-            root: null, // observes intersections relative to the viewport
-            rootMargin: '0px 0px -85% 0px', // Only consider sections in the top 15% of the viewport
-            threshold: 0 // Trigger as soon as a section enters this zone
+            root: null,
+            rootMargin: '-90px 0px -50% 0px'
         };
 
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Remove active class from all nav links
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                    });
+                const targetSection = entry.target.parentElement;
+                const targetLinkId = `#${targetSection.id}`;
 
-                    // Find the corresponding nav link and add the active class
-                    const correspondingLink = document.querySelector(`#menu a[href="#${entry.target.id}"]`);
-                    if (correspondingLink) {
-                        correspondingLink.classList.add('active');
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === targetLinkId);
+                    });
+                } else {
+                    if (scrollDirection === 'up') {
+                        const linkForThisSection = document.querySelector(`#menu a[href="${targetLinkId}"]`);
+                        if (linkForThisSection && linkForThisSection.classList.contains('active')) {
+                            const activeIndex = navLinksArray.findIndex(link => link.getAttribute('href') === targetLinkId);
+                            if (activeIndex > 0) {
+                                navLinks[activeIndex].classList.remove('active');
+                                navLinks[activeIndex - 1].classList.add('active');
+                            }
+                        }
                     }
                 }
             });
         }, observerOptions);
 
-        // Observe each section
-        sections.forEach(section => {
-            sectionObserver.observe(section);
+        triggers.forEach(trigger => {
+            if (trigger) observer.observe(trigger);
         });
+
+        // --- 3. Handle Middle-Mouse Button Scrolling ---
+        let isPanning = false;
+        let animationFrameId;
+
+        // This function manually checks position ONLY during a pan
+        function panScrollCheck() {
+            if (!isPanning) return;
+
+            let currentSectionId = '';
+            const topOffset = 90;
+
+            triggers.forEach(trigger => {
+                if (trigger.getBoundingClientRect().top < topOffset) {
+                    currentSectionId = trigger.parentElement.id;
+                }
+            });
+
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+                currentSectionId = sections[sections.length - 1].id;
+            }
+
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${currentSectionId}`);
+            });
+
+            requestAnimationFrame(panScrollCheck);
+        }
+
+        window.addEventListener('mousedown', (e) => {
+            if (e.button === 1) { // Middle mouse button
+                isPanning = true;
+                requestAnimationFrame(panScrollCheck);
+            }
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if (e.button === 1) {
+                isPanning = false;
+            }
+        });
+
+        // --- 4. Set Initial State ---
+        setTimeout(() => {
+            if (window.scrollY < 50 && navLinks[0]) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                navLinks[0].classList.add('active');
+            } else {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    if (section.getBoundingClientRect().top < 100) {
+                        currentSectionId = section.id;
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${currentSectionId}`);
+                });
+            }
+        }, 200);
     }
     // --- NEW: Navbar Scroll Effect ---
     const header = document.querySelector('#mainContent header');

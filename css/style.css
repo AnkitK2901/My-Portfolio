@@ -38,7 +38,40 @@ body::-webkit-scrollbar {
     border-radius: 50%;
     filter: blur(100px);
     z-index: 0;
-    transition: transform 0.8s ease-in-out, background-color 0.8s ease-in-out;
+    transition: all 1.2s ease-in-out;
+}
+
+/* --- LIGHT MODE (Initial Positions) --- */
+.bg-circle-1 {
+    width: 300px;
+    height: 300px;
+    background-color: var(--circle-1-light);
+    /* Starts at the Top-Left */
+    top: -150px;
+    left: -150px;
+}
+
+.bg-circle-2 {
+    width: 400px;
+    height: 400px;
+    background-color: var(--circle-2-light);
+    /* Starts at the Bottom-Right */
+    bottom: -200px;
+    right: -200px;
+}
+
+/* --- DARK MODE (New Positions) --- */
+/* This creates the pure vertical swap animation */
+.dark .bg-circle-1 {
+    background-color: var(--circle-1-dark);
+    /* Moves straight down */
+    top: 90%;
+}
+
+.dark .bg-circle-2 {
+    background-color: var(--circle-2-dark);
+    /* Moves straight up */
+    bottom: 90%;
 }
 
 .bg-circle-1 {
@@ -906,4 +939,10 @@ header.scrolled {
     /* This forces the browser to use the slashed zero character */
     -moz-font-feature-settings: "zero";
     font-feature-settings: "zero";
+}
+.scroll-trigger {
+  position: absolute;
+  top: 0;
+  height: 1px;
+  width: 1px;
 }
