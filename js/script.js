@@ -186,25 +186,64 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
         });
     }
+    // ===================================================================
+    // START: Replace your code with this entire block
+    // ===================================================================
 
-    // --- Page Transitions ---
-    enterButton.addEventListener('click', () => {
-        animationLoopActive = false;
-        // Reset text states immediately to prevent overlap
+    // This function you wrote is PERFECT. It defines what happens after the animation.
+    function onContentHideEnd() {
+        mainContent.classList.add('hidden');
+        mainContent.classList.remove('content-reveal', 'content-hide');
+        lockScreen.classList.remove('fade-out');
+        lockScreen.classList.add('fade-in-zoom'); // This triggers your new CSS animation
         greetingEl.classList.remove('visible');
         taglineEl.innerHTML = '';
+        animationLoopActive = true;
+        currentAnimationId++;
+        animationLoop(currentAnimationId);
+    }
 
-        // Add classes to trigger animations
+    // --- Page Transitions ---
+
+    // This listener is also PERFECT. It resets the state when entering the site.
+    enterButton.addEventListener('click', () => {
+        animationLoopActive = false;
+        greetingEl.classList.remove('visible');
+        taglineEl.innerHTML = '';
         document.querySelectorAll('.lock-element').forEach(el => el.classList.add('lock-element-fade-out'));
+        lockScreen.classList.remove('fade-in-zoom'); // This reset is correct
         lockScreen.classList.add('fade-out');
         mainContent.classList.remove('hidden');
         mainContent.classList.add('content-reveal');
-
-        // Add class for circle animation
         setTimeout(() => {
             body.classList.add('circles-active');
         }, 500);
     });
+
+    // THIS IS THE PART TO FIX:
+    // The homeLogo listener should ONLY start the animation.
+    homeLogo.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollRevealElements.forEach(el => el.classList.remove('visible'));
+        body.classList.remove('circles-active');
+
+        // That's it. This is the only line of logic it needs.
+        mainContent.classList.add('content-hide');
+    });
+
+    // THIS IS THE PART TO ADD:
+    // This is the single, permanent listener that does the work after the animation.
+    mainContent.addEventListener('animationend', (event) => {
+        // It checks if the correct animation finished...
+        if (event.animationName === 'fadeOutSlideUp') {
+            // ...and then calls your function.
+            onContentHideEnd();
+        }
+    });
+
+    // ===================================================================
+    // END: The corrected section finishes here
+    // ===================================================================
 
     homeLogo.addEventListener('click', (e) => {
         e.preventDefault();
@@ -219,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ensure this only runs for the content-hide animation
             if (event.animationName === 'fadeOutSlideUp') {
                 // Hide content and reset its classes
+                onContentHideEnd();
                 mainContent.classList.add('hidden');
                 mainContent.classList.remove('content-reveal', 'content-hide');
 

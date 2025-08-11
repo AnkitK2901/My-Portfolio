@@ -232,6 +232,7 @@ body.circles-active .bg-circle-2 {
     to {
         opacity: 0;
         visibility: hidden;
+        transform: scale(1.1);
     }
 }
 
@@ -266,6 +267,25 @@ body.circles-active .bg-circle-2 {
     }
 }
 
+/* Add these new rules to your style.css file */
+
+@keyframes zoomInBg {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* This class will trigger the animation */
+.lockscreen-bg.fade-in-zoom {
+    /* 'forwards' ensures the element stays at 100% opacity and scale(1) after the animation */
+    animation: zoomInBg 0.8s forwards ease-out;
+}
 
 /* Section Scroll Margin */
 section[id] {
@@ -940,9 +960,10 @@ header.scrolled {
     -moz-font-feature-settings: "zero";
     font-feature-settings: "zero";
 }
+
 .scroll-trigger {
-  position: absolute;
-  top: 0;
-  height: 1px;
-  width: 1px;
+    position: absolute;
+    top: 0;
+    height: 1px;
+    width: 1px;
 }
