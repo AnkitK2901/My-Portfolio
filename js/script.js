@@ -339,25 +339,80 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Infinite Scroll for Image Carousel ---
     function setupInfiniteScroll() {
         if (!imageCarousel) return;
+
+        // Clone images for a seamless loop
         const images = imageCarousel.querySelectorAll('img');
         images.forEach(img => {
             imageCarousel.appendChild(img.cloneNode(true));
         });
+
         let currentPosition = 0;
         const speed = 0.75;
+        let isPaused = false; // Flag to control the animation state
+
         function animate() {
-            currentPosition += speed;
-            if (currentPosition >= imageCarousel.scrollWidth / 2) {
-                currentPosition = 0;
+            // Only update the position if the animation is not paused
+            if (!isPaused) {
+                currentPosition += speed;
+                // Reset position when it completes a full scroll of the original images
+                if (currentPosition >= imageCarousel.scrollWidth / 2) {
+                    currentPosition = 0;
+                }
+                imageCarousel.style.transform = `translateX(-${currentPosition}px)`;
             }
-            imageCarousel.style.transform = `translateX(-${currentPosition}px)`;
+            // Continue the animation loop
             requestAnimationFrame(animate);
         }
+
+        // --- Event Listeners for Pausing and Resuming ---
+
+        // 1. Desktop: Pause on hover, resume on mouse leave
+        imageCarousel.addEventListener('mouseenter', () => isPaused = true);
+        imageCarousel.addEventListener('mouseleave', () => isPaused = false);
+
+        // 2. Mobile: Pause on touch, resume on touch outside
+        imageCarousel.addEventListener('touchstart', (e) => {
+            // Stop the event from bubbling up to the document listener
+            e.stopPropagation();
+            isPaused = true;
+        }, { passive: true });
+
+        document.addEventListener('touchstart', () => {
+            isPaused = false;
+        }, { passive: true });
+
+        // Start the animation
         animate();
     }
 
     // --- Initial Setup ---
-    preloadImages(['assets/images/background.jpg', 'assets/images/profile.jpg'], () => {
+    // Create a list of all images to load upfront
+    const imagesToPreload = [
+        // Lock Screen assets
+        'assets/images/Untitled design (2).png', // CSS background for lock screen
+        'assets/images/profile.jpg',
+
+        // Project assets
+        'assets/images/project/ibecc.png',
+        'assets/images/project/quiz.png',
+        'assets/images/project/currency.png',
+        'assets/images/project/pay.png',
+        'assets/images/project/portfolio.png',
+
+        // About Me carousel assets
+        'assets/images/About Me/20240301_135402.jpg',
+        'assets/images/About Me/20240302_161141.jpg',
+        'assets/images/About Me/IMG-20241110-WA0091.jpg',
+        'assets/images/About Me/IMG_5202.JPG',
+        'assets/images/About Me/IMG_5364.JPG',
+        'assets/images/About Me/IMG_8636.JPG',
+        'assets/images/About Me/IMG_9162.JPG',
+        'assets/images/About Me/IMG_9822.JPG'
+    ];
+
+    // Call the preloader with the full list of images
+    preloadImages(imagesToPreload, () => {
+        // This code runs only AFTER all images are downloaded
         if (lockScreen) lockScreen.style.display = 'flex';
         if (skeletonLoader) skeletonLoader.style.opacity = '0';
         if (lockScreen) lockScreen.style.opacity = '1';
