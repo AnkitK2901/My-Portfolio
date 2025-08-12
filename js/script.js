@@ -169,6 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function onContentHideEnd() {
         mainContent.classList.add('hidden');
         mainContent.classList.remove('content-reveal', 'content-hide');
+
+        // FIX: This line resets the lock screen content so it becomes visible again.
+        document.querySelectorAll('.lock-element').forEach(el => el.classList.remove('lock-element-fade-out'));
+
         lockScreen.classList.remove('fade-out');
         lockScreen.classList.add('fade-in-zoom');
         greetingEl.classList.remove('visible');
