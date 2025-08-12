@@ -969,3 +969,25 @@ header.scrolled {
     height: 1px;
     width: 1px;
 }
+/* --- Mobile-Only Styles for Tech Stack Tabs --- */
+@media (max-width: 768px) {
+    .tabs {
+        /* Prevents the tabs from wrapping into a column */
+        flex-wrap: nowrap;
+        
+        /* Aligns the tabs to the start of the container */
+        justify-content: flex-start;
+        
+        /* Enables horizontal scrolling when tabs overflow */
+        overflow-x: auto;
+
+        /* Hide the scrollbar for a cleaner mobile experience */
+        -ms-overflow-style: none;  /* For IE and Edge */
+        scrollbar-width: none;  /* For Firefox */
+    }
+
+    /* Hides the scrollbar for Chrome, Safari, and Opera */
+    .tabs::-webkit-scrollbar {
+        display: none;
+    }
+}
