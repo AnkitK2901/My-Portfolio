@@ -973,21 +973,21 @@ header.scrolled {
 @media (max-width: 768px) {
     .tabs {
         /* Prevents the tabs from wrapping into a column */
-        flex-wrap: nowrap;
+        flex-wrap: nowrap !important;
         
         /* Aligns the tabs to the start of the container */
-        justify-content: flex-start;
+        justify-content: flex-start !important;
         
         /* Enables horizontal scrolling when tabs overflow */
-        overflow-x: auto;
+        overflow-x: auto !important;
 
         /* Hide the scrollbar for a cleaner mobile experience */
-        -ms-overflow-style: none;  /* For IE and Edge */
-        scrollbar-width: none;  /* For Firefox */
+        -ms-overflow-style: none !important;  /* For IE and Edge */
+        scrollbar-width: none !important;  /* For Firefox */
     }
 
     /* Hides the scrollbar for Chrome, Safari, and Opera */
     .tabs::-webkit-scrollbar {
-        display: none;
+        display: none !important;
     }
 }
