@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.addEventListener('click', (event) => {
+    document.addEventListener('touchstart', (event) => {
         const isMenuOpen = menu.classList.contains('flex');
         const isClickInsideMenu = menu.contains(event.target);
         const isClickOnMenuBtn = menuBtn.contains(event.target);
